@@ -29,6 +29,18 @@ brChan = 7
 # PWM values for gripping and turning
 fUngrip = 150
 fGrip = 450
+'''
+rUngrip =
+rGrip =
+lUngrip =
+lGrip =
+uUngrip =
+UGrip =
+dUngrip =
+dGrip =
+bUngrip =
+dGrip = 
+'''
 
 # Initialize PWM
 # Make sure all claws are gripped and properly rotated 
