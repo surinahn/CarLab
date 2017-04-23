@@ -26,7 +26,7 @@ rrChan = 5
 lrChan = 6
 brChan = 7
 
-# PWM values for gripping and turning
+# PWM values for gripping
 fUngrip = 150
 fGrip = 450
 '''
@@ -39,86 +39,215 @@ UGrip =
 dUngrip =
 dGrip =
 bUngrip =
-dGrip = 
+dGrip =
+bUngrip =
+bGrip =
+'''
+
+# PWM values for turning each side
+# CW = clockwise, CCW = counter-clockwise, 2 = 180 degrees (turn twice)
+'''
+fCW =
+fCCW =
+f2CW =
+f2CCW =
+rCW =
+rCCW =
+r2CW =
+r2CCW =
+lCW =
+lCCW =
+l2CW =
+l2CCW =
+uCW =
+uCCW =
+u2CW =
+u2CCW =
+dCW =
+dCCW =
+d2CW =
+d2CCW =
+bCW =
+bCCW =
+b2CW =
+b2CCW =
 '''
 
 # Initialize PWM
-# Make sure all claws are gripped and properly rotated 
+# Make sure all claws are gripped and properly rotated
 def initialize():
     # Initialise the PWM device using the default address
     pwm = PWM(0x40)
     pwm.setPWMFreq(60) # Set frequency to 60 Hz
 
-# Turn front side CW
-def turnF():
-    # Turn front claw 90 degrees CW
+# Turn front side
+# x = 0 means CW, x = 1 means CCW, x = 2 means 180 degrees
+def turnF(x):
+    if x == 0:
+        # Turn claw
+        pwm.setPWM(frChan, 0, fCW)
+        time.sleep(1)
+        # Ungrip claw
+        pwm.setPWM(fgChan, 0, fUngrip)
+        time.sleep(1)
+        # Turn claw back
+        pwm.setPWM(frChan, 0, fCCW)
+        time.sleep(1)
+        # Grip claw
+        pwm.setPWM(fgChan, 0, fGrip)
+        time.sleep(1)
+    elif x == 1:
+        # Turn Claw
+        pwm.setPWM(frChan, 0, fCCW)
+        time.sleep(1)
+        # Ungrip claw
+        pwm.setPWM(fgChan, 0, fUngrip)
+        time.sleep(1)
+        # Turn claw back
+        pwm.setPWM(frChan, 0, fCW)
+        time.sleep(1)
+        # Grip claw
+        pwm.setPWM(fgChan, 0, fGrip)
+        time.sleep(1)
+    elif x == 2:
+        # Turn claw
+        pwm.setPWM(frChan, 0, f2CW)
+        time.sleep(1)
+        # Ungrip claw
+        pwm.setPWM(fgChan, 0, fUngrip)
+        time.sleep(1)
+        # Turn claw back
+        pwm.setPWM(frChan, 0, f2CCW)
+        time.sleep(1)
+        # Grip claw
+        pwm.setPWM(fgChan, 0, fGrip)
+        time.sleep(1)
+
+# Turn right side
+def turnR(x):
+    # Turn claw
+    pwm.setPWM(rrChan, 0, rCW)
+    time.sleep(1)
+    # Ungrip claw
+    pwm.setPWM(rgChan, 0, rUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(rrChan, 0, rCCW)
+    time.sleep(1)
+    # Grip claw
+    pwm.setPWM(rgChan, 0, rGrip)
+    time.sleep(1)
+elif x == 1:
+    # Turn Claw
+    pwm.setPWM(rrChan, 0, rCCW)
+    time.sleep(1)
+    # Ungrip claw
+    pwm.setPWM(rgChan, 0, rUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(rrChan, 0, rCW)
+    time.sleep(1)
+    # Grip claw
+    pwm.setPWM(rgChan, 0, rGrip)
+    time.sleep(1)
+elif x == 2:
+    # Turn claw
+    pwm.setPWM(rrChan, 0, r2CW)
+    time.sleep(1)
+    # Ungrip claw
+    pwm.setPWM(rgChan, 0, rUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(rrChan, 0, r2CCW)
+    time.sleep(1)
+    # Grip claw
+    pwm.setPWM(rgChan, 0, rGrip)
+    time.sleep(1)
+
+# Turn left side
+def turnL(x):
+    # Turn claw
+    pwm.setPWM(frChan, 0, fCW)
+    time.sleep(1)
     # Ungrip claw
     pwm.setPWM(fgChan, 0, fUngrip)
     time.sleep(1)
-    # Turn front claw 90 degrees CCW
+    # Turn claw back
+    pwm.setPWM(frChan, 0, fCCW)
+    time.sleep(1)
+    # Grip claw
+    pwm.setPWM(fgChan, 0, fGrip)
+    time.sleep(1)
+elif x == 1:
+    # Turn Claw
+    pwm.setPWM(frChan, 0, fCCW)
+    time.sleep(1)
+    # Ungrip claw
+    pwm.setPWM(fgChan, 0, fUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(frChan, 0, fCW)
+    time.sleep(1)
+    # Grip claw
+    pwm.setPWM(fgChan, 0, fGrip)
+    time.sleep(1)
+elif x == 2:
+    # Turn claw
+    pwm.setPWM(frChan, 0, f2CW)
+    time.sleep(1)
+    # Ungrip claw
+    pwm.setPWM(fgChan, 0, fUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(frChan, 0, f2CCW)
+    time.sleep(1)
     # Grip claw
     pwm.setPWM(fgChan, 0, fGrip)
     time.sleep(1)
 
-'''
-# Turn front side CCW
-def turnFp():
-    # Turn front claw 90 degrees CCW
+# Turn back side
+def turnB(x):
+    # Turn claw
+    pwm.setPWM(brChan, 0, bCW)
+    time.sleep(1)
     # Ungrip claw
-    # Turn front clas 90 degrees CW
+    pwm.setPWM(bgChan, 0, bUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(brChan, 0, bCCW)
+    time.sleep(1)
     # Grip claw
-
-# Turn front side twice
-def turnF2():
-    # Turn front claw 180 degrees
+    pwm.setPWM(bgChan, 0, bGrip)
+    time.sleep(1)
+elif x == 1:
+    # Turn Claw
+    pwm.setPWM(brChan, 0, bCCW)
+    time.sleep(1)
     # Ungrip claw
-    # Turn front claw 180 degrees
+    pwm.setPWM(bgChan, 0, bUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(brChan, 0, bCW)
+    time.sleep(1)
     # Grip claw
-
-# Turn right side CW
-def turnR():
-    # Turn right claw 90 degrees CW
+    pwm.setPWM(bgChan, 0, bGrip)
+    time.sleep(1)
+elif x == 2:
+    # Turn claw
+    pwm.setPWM(brChan, 0, b2CW)
+    time.sleep(1)
     # Ungrip claw
-    # Turn right claw 90 degrees CCW
+    pwm.setPWM(bgChan, 0, bUngrip)
+    time.sleep(1)
+    # Turn claw back
+    pwm.setPWM(brChan, 0, b2CCW)
+    time.sleep(1)
     # Grip claw
+    pwm.setPWM(bgChan, 0, bGrip)
+    time.sleep(1)
 
-# Turn right side CCW
-def turnRp():
-    # Turn right claw 90 degrees CCW
-    # Ungrip claw
-    # Turn right claw 90 degrees CW
-    # Grip claw
-
-# Turn right side twice
-def turnR2():
-    # Turn right claw 180
-    # Ungrip claw
-    # Turn right claw 180
-    # Grip claw
-
-# Turn left side CW
-def turnL():
-    # Turn left claw 90 degrees CW
-    # Ungrip claw
-    # Turn left claw 90 degrees CCW
-    # Grip claw
-
-# Turn left side CCW
-def turnLp():
-    # Turn left claw 90 degrees CCW
-    # Ungrip claw
-    # Turn left claw 90 degrees CW
-    # Grip claw
-
-# Turn left side twice
-def turnL2():
-    # Turn left claw 180
-    # Ungrip claw
-    # Turn left claw 180
-    # Grip claw
-
-# Turn up side CW
-def turnU():
+# Turn up side
+def turnU(x):
     # Ungrip front claw
     # Ungrip back claw
     # Ungrip left claw
@@ -142,81 +271,5 @@ def turnU():
     # Grip front claw
     # Grip back claw
 
-# Turn up side CCW
-def turnUp():
-    # Ungrip front claw
-    # Ungrip back claw
-    # Ungrip left claw
-    # Turn right claw 90 degrees CCW (up side is now on front)
-
-    # Grip left claw
-    # Ungrip right claw
-    # Turn right claw 90 degrees CW
-
-    # Grip front claw
-    # Turn front claw 90 degrees CCW
-    # Ungrip front claw
-    # Turn front claw 90 degrees CW
-
-    # Turn left claw 90 degrees CCW (up side is now back to up)
-    # Grip right claw
-    # Ungrip left claw
-    # Turn left claw 90 degrees CW
-    # Grip left claw
-
-    # Grip front claw
-    # Grip back claw
-
-# Turn up side twice
-def turnU2():
-    # Ungrip front claw
-    # Ungrip back claw
-    # Ungrip left claw
-    # Turn right claw 90 degrees CCW (up side is now on front)
-
-    # Grip left claw
-    # Ungrip right claw
-    # Turn right claw 90 degrees CW
-
-    # Grip front claw
-    # Turn front claw 180 degrees
-    # Ungrip front claw
-    # Turn front claw 180 degrees
-
-    # Turn left claw 90 degrees CCW (up side is now back to up)
-    # Grip right claw
-    # Ungrip left claw
-    # Turn left claw 90 degrees CW
-    # Grip left claw
-
-    # Grip front claw
-    # Grip back claw
-
-# Turn down side CW
-def turnD():
-
-# Turn down side CCW
-def turnDp():
-
-# Turn down side twice
-def turnD2():
-
-
-# Turn back side CW
-def turnB():
-    # Turn up back 90 degrees CW
-    # Ungrip claw
-    # Turn up back 90 degrees CCW
-    # Grip claw
-
-# Turn back side CCW
-def turnBp():
-    # Turn back claw 90 degrees CCW
-    # Ungrip claw
-    # Turn back claw 90 degrees CW
-    # Grip claw
-
-# Turn back side twice
-def turnB2():
-
-'''
+# Turn down side
+def turnD(x):
