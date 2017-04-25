@@ -1,8 +1,8 @@
 import os, sys, subprocess
 import numpy as np
 
-base_x = 110
-base_y = 50
+base_x = 100
+base_y = 80
 
 side = 50
 offset = 30
@@ -14,16 +14,17 @@ for i in range(0,9):
 	sigs = [0,0,0,0,0,0]
 	blocks.append(sigs)
 
+letters = ['U', 'R', 'F', 'D', 'L', 'B']
 hits = [1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
 
 def contains(sig, mid_x, mid_y, x, y): 
 	offset_x = mid_x-x; 
+
 	offset_y = mid_y-y; 
-	print str(sig) + ":" + str(mid_x) + ":" +str(mid_y)
 	if offset_x < 0 or offset_y < 0: 
 		return False 
-	if offset_x < offset and offset_y < offset: 
-		print str(sig) + ":" + str(offset_x) + ":" +str(offset_y)
+	# if offset_x < offset and offset_y < offset: 
+	# 	print str(sig) + ":" + str(offset_x) + ":" +str(offset_y)
 	return (offset_x < offset and offset_y < offset)
 
 for line in data.readlines(): 
@@ -47,3 +48,8 @@ for line in data.readlines():
 					blocks[num][sig-1] += 1
 
 print blocks
+max_indices = [letters[b.index(max(b))] for b in blocks]
+print max_indices
+string = ''.join(max_indices)
+print string
+
