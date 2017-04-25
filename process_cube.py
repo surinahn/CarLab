@@ -14,7 +14,7 @@ for i in range(0,9):
 	sigs = [0,0,0,0,0,0]
 	blocks.append(sigs)
 
-letters = ['U', 'R', 'F', 'D', 'L', 'B']
+letters = ['B','F','U','L','D','R']
 hits = [1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
 
 def contains(sig, mid_x, mid_y, x, y): 
@@ -50,6 +50,10 @@ for line in data.readlines():
 print blocks
 max_indices = [letters[b.index(max(b))] for b in blocks]
 print max_indices
+#process for white
+for i in range(0,9): 
+	if max(blocks[i]) < 5: 
+		max_indices[i] = letters[4]
 string = ''.join(max_indices)
 print string
 
