@@ -54,6 +54,14 @@ print('\n')
 solution = kociemba.solve(config)
 print("Solution: ")
 print(solution)
+print('\n')
 
 # Solve the cube
-turnF()
+print("Solving the cube...")
+moves = solution.split()
+
+for m in moves:
+    print(m)
+    time.sleep(1)
+
+
