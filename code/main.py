@@ -20,24 +20,31 @@ initialize()
 # What if the claws interfere with the camera vision? 
 
 # Capture the up (yellow) face
+print('Inspecting yellow...')
 
 # Rotate the cube CW with right claw 
 
 # Capture the front (orange) face
+print('Inspecting orange...')
 
 # Rotate the cube CW with right claw 
 
 # Capture the down (white) face
+print('Inspecting white...')
 
 # Rotate the cube CW with right claw 
 
 # Capture the back (pink) face
+print('Inspecting pink...')
 
 # Capture the right (blue) face
+print('Inspecting blue...')
 
 # Capture the left (green) face
+print('Inspecting green...')
 
 # Return to original orientation
+print('Done Inspecting!\n')
 
 
 ############################

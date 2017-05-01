@@ -27,6 +27,11 @@ lrChan = 6
 brChan = 7
 
 # PWM values for gripping
+# f claw is Red
+# r claw is orange
+# l claw is blue
+# b claw is black
+
 fUngrip = 150
 fGrip = 450
 '''
@@ -34,11 +39,7 @@ rUngrip =
 rGrip =
 lUngrip =
 lGrip =
-uUngrip =
-UGrip =
 dUngrip =
-dGrip =
-bUngrip =
 dGrip =
 bUngrip =
 bGrip =
@@ -59,14 +60,6 @@ lCW =
 lCCW =
 l2CW =
 l2CCW =
-uCW =
-uCCW =
-u2CW =
-u2CCW =
-dCW =
-dCCW =
-d2CW =
-d2CCW =
 bCW =
 bCCW =
 b2CW =
