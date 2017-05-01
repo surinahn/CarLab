@@ -3,6 +3,7 @@
 import kociemba
 from controls import *
 import time
+import subprocess
 
 
 # Initialize the claws
@@ -13,6 +14,9 @@ initialize()
 ############################
 
 # Read input cube configuration from pixy cam
+subprocess.call(['./read_cube.sh'])
+subprocess.call("process_cube.py cleaned.txt", shell=True)
+
 # (Inspect each side by rotating it)
 # Camera is looking down on the cube (at the Yellow face)
 # Front = Orange, Right = Blue, Left = Green, Up = Yellow, Down = White, Back = Pink
