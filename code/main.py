@@ -9,10 +9,34 @@ import subprocess
 # Initialize the claws
 initialize()
 
+# Close claws
+userInput = ''
+while userInput != 'c':
+    userInput = raw_input("Press c when ready to grip: ")
+close()
+
+turnR(0)
+turnU(0)
+turnR(1)
+turnU(1)
+turnR(1)
+turnF(0)
+turnR(2)
+turnU(1)
+turnR(1)
+turnU(1)
+turnR(0)
+turnU(0)
+turnR(1)
+turnF(1)
+
+#inspect()
+
 ############################
 #     INSPECTION PHASE     #
 ############################
 
+'''
 # Read input cube configuration from pixy cam
 subprocess.call(['./read_cube.sh'])
 subprocess.call("process_cube.py cleaned.txt", shell=True)
@@ -74,5 +98,6 @@ moves = solution.split()
 for m in moves:
     print(m)
     time.sleep(1)
+'''
 
 
