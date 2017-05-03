@@ -16,25 +16,23 @@ servoMax = 600  # Max pulse length out of 4096
 
 pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
 
-time.sleep(2)
-pwm.setPWM(4, 0, 400)
-pwm.setPWM(0, 0, servoMin)
-pwm.setPWM(1, 0, servoMin)
-time.sleep(2)
-pwm.setPWM(0, 0, servoMin+350)
-pwm.setPWM(1, 0, servoMin+280)
-time.sleep(2)
-pwm.setPWM(4, 0, servoMin)
-time.sleep(2)
-pwm.setPWM(4, 0, servoMax)
+pwm.setPWM(1, 0, 400)
+
+pwm.setPWM(5,0,140)
 
 
-'''
 time.sleep(1)
-pwm.setPWM(4, 0, servoMin)
+
+pwm.setPWM(5, 0, 370)
+
 time.sleep(1)
-pwm.setPWM(4, 0, servoMin + 300)
-'''
+
+pwm.setPWM(5, 0, 630)
+
+time.sleep(1)
+
+pwm.setPWM(5, 0, 370)
+
 
 
 

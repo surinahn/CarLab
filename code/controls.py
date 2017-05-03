@@ -27,44 +27,35 @@ lrChan = 6
 brChan = 7
 
 # PWM values for gripping
-# f claw is Red
+# f claw is red
 # r claw is orange
 # l claw is blue
 # b claw is black
 
 fUngrip = 150
-fGrip = 450
-'''
-rUngrip =
-rGrip =
-lUngrip =
-lGrip =
-dUngrip =
-dGrip =
-bUngrip =
-bGrip =
-'''
+fGrip = 410
+rUngrip = 150
+rGrip = 400
+lUngrip = 150
+lGrip = 480
+bUngrip = 150
+bGrip = 450
 
 # PWM values for turning each side
 # CW = clockwise, CCW = counter-clockwise, 2 = 180 degrees (turn twice)
-'''
-fCW =
-fCCW =
-f2CW =
-f2CCW =
-rCW =
-rCCW =
-r2CW =
-r2CCW =
-lCW =
-lCCW =
-l2CW =
-l2CCW =
-bCW =
-bCCW =
-b2CW =
-b2CCW =
-'''
+
+fdefault = 390
+fCW = 125
+fCCW = 600
+rdefault = 370
+rCW = 140
+rCCW = 630
+ldefault = 380
+lCW = 125
+lCCW = 640
+bdefault = 370
+bCW = 125
+bCCW = 640
 
 # Initialize PWM
 # Make sure all claws are gripped and properly rotated
@@ -72,6 +63,14 @@ def initialize():
     # Initialise the PWM device using the default address
     pwm = PWM(0x40)
     pwm.setPWMFreq(60) # Set frequency to 60 Hz
+    pwm.setPWM(fgChan, fGrip)
+    pwm.setPWM(rgChan, rGrip)
+    pwm.setPWM(lgChan, lGrip)
+    pwm.setPWM(bgChan, bGrip)
+    pwm.setPWM(frChan, fdefault)
+    pwm.setPWM(rrChan, rdefault)
+    pwm.setPWM(lrChan, ldefault)
+    pwm.setPWM(brChan, bdefault) 
 
 # Turn front side
 # x = 0 means CW, x = 1 means CCW, x = 2 means 180 degrees
@@ -84,7 +83,7 @@ def turnF(x):
         pwm.setPWM(fgChan, 0, fUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(frChan, 0, fCCW)
+        pwm.setPWM(frChan, 0, fdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(fgChan, 0, fGrip)
@@ -97,20 +96,32 @@ def turnF(x):
         pwm.setPWM(fgChan, 0, fUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(frChan, 0, fCW)
+        pwm.setPWM(frChan, 0, fdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(fgChan, 0, fGrip)
         time.sleep(1)
     elif x == 2:
         # Turn claw
-        pwm.setPWM(frChan, 0, f2CW)
+        pwm.setPWM(frChan, 0, fCW)
         time.sleep(1)
         # Ungrip claw
         pwm.setPWM(fgChan, 0, fUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(frChan, 0, f2CCW)
+        pwm.setPWM(frChan, 0, fdefault)
+        time.sleep(1)
+        # Grip claw
+        pwm.setPWM(fgChan, 0, fGrip)
+        time.sleep(1)
+        # Turn claw
+        pwm.setPWM(frChan, 0, fCW)
+        time.sleep(1)
+        # Ungrip claw
+        pwm.setPWM(fgChan, 0, fUngrip)
+        time.sleep(1)
+        # Turn claw back
+        pwm.setPWM(frChan, 0, fdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(fgChan, 0, fGrip)
@@ -126,7 +137,7 @@ def turnR(x):
         pwm.setPWM(rgChan, 0, rUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(rrChan, 0, rCCW)
+        pwm.setPWM(rrChan, 0, rdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(rgChan, 0, rGrip)
@@ -139,20 +150,32 @@ def turnR(x):
         pwm.setPWM(rgChan, 0, rUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(rrChan, 0, rCW)
+        pwm.setPWM(rrChan, 0, rdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(rgChan, 0, rGrip)
         time.sleep(1)
     elif x == 2:
         # Turn claw
-        pwm.setPWM(rrChan, 0, r2CW)
+        pwm.setPWM(rrChan, 0, rCW)
         time.sleep(1)
         # Ungrip claw
         pwm.setPWM(rgChan, 0, rUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(rrChan, 0, r2CCW)
+        pwm.setPWM(rrChan, 0, rdefault)
+        time.sleep(1)
+        # Grip claw
+        pwm.setPWM(rgChan, 0, rGrip)
+        time.sleep(1)
+        # Turn claw
+        pwm.setPWM(rrChan, 0, rCW)
+        time.sleep(1)
+        # Ungrip claw
+        pwm.setPWM(rgChan, 0, rUngrip)
+        time.sleep(1)
+        # Turn claw back
+        pwm.setPWM(rrChan, 0, rdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(rgChan, 0, rGrip)
@@ -168,7 +191,7 @@ def turnL(x):
         pwm.setPWM(lgChan, 0, lUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(lrChan, 0, lCCW)
+        pwm.setPWM(lrChan, 0, ldefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(lgChan, 0, lGrip)
@@ -181,20 +204,32 @@ def turnL(x):
         pwm.setPWM(lgChan, 0, lUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(lrChan, 0, lCW)
+        pwm.setPWM(lrChan, 0, ldefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(lgChan, 0, lGrip)
         time.sleep(1)
     elif x == 2:
         # Turn claw
-        pwm.setPWM(lrChan, 0, l2CW)
+        pwm.setPWM(lrChan, 0, lCW)
         time.sleep(1)
         # Ungrip claw
         pwm.setPWM(lgChan, 0, lUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(lrChan, 0, l2CCW)
+        pwm.setPWM(lrChan, 0, ldefault)
+        time.sleep(1)
+        # Grip claw
+        pwm.setPWM(lgChan, 0, lGrip)
+        time.sleep(1)
+        # Turn claw
+        pwm.setPWM(lrChan, 0, lCW)
+        time.sleep(1)
+        # Ungrip claw
+        pwm.setPWM(lgChan, 0, lUngrip)
+        time.sleep(1)
+        # Turn claw back
+        pwm.setPWM(lrChan, 0, ldefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(lgChan, 0, lGrip)
@@ -210,7 +245,7 @@ def turnB(x):
         pwm.setPWM(bgChan, 0, bUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(brChan, 0, bCCW)
+        pwm.setPWM(brChan, 0, bdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(bgChan, 0, bGrip)
@@ -223,20 +258,32 @@ def turnB(x):
         pwm.setPWM(bgChan, 0, bUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(brChan, 0, bCW)
+        pwm.setPWM(brChan, 0, bdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(bgChan, 0, bGrip)
         time.sleep(1)
     elif x == 2:
         # Turn claw
-        pwm.setPWM(brChan, 0, b2CW)
+        pwm.setPWM(brChan, 0, bCW)
         time.sleep(1)
         # Ungrip claw
         pwm.setPWM(bgChan, 0, bUngrip)
         time.sleep(1)
         # Turn claw back
-        pwm.setPWM(brChan, 0, b2CCW)
+        pwm.setPWM(brChan, 0, bdefault)
+        time.sleep(1)
+        # Grip claw
+        pwm.setPWM(bgChan, 0, bGrip)
+        time.sleep(1)
+        # Turn claw
+        pwm.setPWM(brChan, 0, bCW)
+        time.sleep(1)
+        # Ungrip claw
+        pwm.setPWM(bgChan, 0, bUngrip)
+        time.sleep(1)
+        # Turn claw back
+        pwm.setPWM(brChan, 0, bdefault)
         time.sleep(1)
         # Grip claw
         pwm.setPWM(bgChan, 0, bGrip)
