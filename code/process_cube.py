@@ -1,8 +1,9 @@
 import os, sys, subprocess
 import numpy as np
 
-base_x = 100
-base_y = 80
+print 'rprksad'
+base_x = 120
+base_y = 100
 
 side = 50
 offset = 30
@@ -27,6 +28,7 @@ def contains(sig, mid_x, mid_y, x, y):
 	# 	print str(sig) + ":" + str(offset_x) + ":" +str(offset_y)
 	return (offset_x < offset and offset_y < offset)
 
+print "begin"
 for line in data.readlines(): 
 	split = line.split() 
 	split = [int(s) for s in split]
@@ -47,8 +49,8 @@ for line in data.readlines():
 				if contains(sig, mid_x, mid_y, x, y):
 					blocks[num][sig-1] += 1
 
-print blocks
 max_indices = [letters[b.index(max(b))] for b in blocks]
+print "max_indices"
 print max_indices
 #process for white
 for i in range(0,9): 

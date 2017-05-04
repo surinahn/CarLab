@@ -1,0 +1,5 @@
+rprksad
+begin
+max_indices
+['B', 'B', 'L', 'F', 'B', 'B', 'B', 'B', 'B']
+DDLDDDDDB

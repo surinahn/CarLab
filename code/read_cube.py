@@ -1,5 +1,5 @@
-import subprocess
+import os, sys, subprocess
 
-def read(): 
-	seq = subprocess.call(['./read_cube.sh'])
-	return seq 
+def read():
+	subprocess.call(['./read_cube.sh'])
+	subprocess.call(['python process_cube.py cleaned.txt > seq.txt'])

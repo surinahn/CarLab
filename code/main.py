@@ -16,46 +16,47 @@ while userInput != 'c':
     userInput = raw_input("Press c when ready to grip: ")
 close()
 
-turnR(0)
-turnU(0)
-turnR(1)
-turnU(1)
-turnR(1)
-turnF(0)
-turnR(2)
-turnU(1)
-turnR(1)
-turnU(1)
-turnR(0)
-turnU(0)
-turnR(1)
-turnF(1)
+##turnR(0)
+##turnU(0)
+##turnR(1)
+##turnU(1)
+##turnR(1)
+##turnF(0)
+##turnR(2)
+##turnU(1)
+##turnR(1)
+##turnU(1)
+##turnR(0)
+##turnU(0)
+##turnR(1)
+##turnF(1)
+
 
 seq = ''
 
+inspect() 
 print('Inspecting yellow...')
-seq += read() 
-inspect()
+rotate()
 
 print('Inspecting orange...')
-seq += read() 
-inspect()
-
-print('Inspecting white...')
-seq += read() 
-inspect()
-
-print('Inspecting pink...')
-seq += read() 
-inspect()
-
-print('Inspecting blue...')
-seq += read() 
-inspect()
-
-print('Inspecting green...')
-seq += read() 
-inspect()
+##inspect()
+##seq += read() 
+##
+##print('Inspecting white...')
+##seq += read() 
+##inspect()
+##
+##print('Inspecting pink...')
+##seq += read() 
+##inspect()
+##
+##print('Inspecting blue...')
+##seq += read() 
+##inspect()
+##
+##print('Inspecting green...')
+##seq += read() 
+##inspect()
 
 ############################
 #     INSPECTION PHASE     #
