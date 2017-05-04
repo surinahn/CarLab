@@ -2,6 +2,7 @@
 
 import kociemba
 from controls import *
+from read_cube import *
 import time
 import subprocess
 
@@ -30,7 +31,31 @@ turnU(0)
 turnR(1)
 turnF(1)
 
-#inspect()
+seq = ''
+
+print('Inspecting yellow...')
+seq += read() 
+inspect()
+
+print('Inspecting orange...')
+seq += read() 
+inspect()
+
+print('Inspecting white...')
+seq += read() 
+inspect()
+
+print('Inspecting pink...')
+seq += read() 
+inspect()
+
+print('Inspecting blue...')
+seq += read() 
+inspect()
+
+print('Inspecting green...')
+seq += read() 
+inspect()
 
 ############################
 #     INSPECTION PHASE     #
@@ -73,6 +98,7 @@ print('Inspecting green...')
 
 # Return to original orientation
 print('Done Inspecting!\n')
+
 
 
 ############################
