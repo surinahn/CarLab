@@ -8,7 +8,7 @@ import subprocess
 
 
 # Initialize the claws
-initialize()
+#initialize()
 
 # Close claws
 userInput = ''
@@ -16,29 +16,27 @@ while userInput != 'c':
     userInput = raw_input("Press c when ready to grip: ")
 close()
 
-##turnR(0)
-##turnU(0)
-##turnR(1)
-##turnU(1)
-##turnR(1)
-##turnF(0)
-##turnR(2)
-##turnU(1)
-##turnR(1)
-##turnU(1)
-##turnR(0)
-##turnU(0)
-##turnR(1)
-##turnF(1)
+#turnF(0)
+#turnF(1)
+#turnR(0)
+#turnR(1)
+#turnL(0)
+turnL(1)
+#turnB(0)
+#turnB(1)
+#turnU(0)
+#turnU(1)
+#turnD(0)
+#turnD(1)
 
 
 seq = ''
 
-inspect() 
-print('Inspecting yellow...')
-rotate()
+#inspect() 
+#print('Inspecting yellow...')
+#rotate()
 
-print('Inspecting orange...')
+#print('Inspecting orange...')
 ##inspect()
 ##seq += read() 
 ##
