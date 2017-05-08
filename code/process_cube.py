@@ -3,7 +3,7 @@ import numpy as np
 
 print 'rprksad'
 base_x = 120
-base_y = 100
+base_y = 50
 
 side = 50
 offset = 30
@@ -49,6 +49,7 @@ for line in data.readlines():
 				if contains(sig, mid_x, mid_y, x, y):
 					blocks[num][sig-1] += 1
 
+print blocks
 max_indices = [letters[b.index(max(b))] for b in blocks]
 print "max_indices"
 print max_indices
