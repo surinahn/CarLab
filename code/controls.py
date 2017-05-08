@@ -581,16 +581,6 @@ def turnD(x):
         time.sleep(0.75)
 
 def rotateZ():
-    # Grip front and back claws
-    pwm.setPWM(fgChan, 0, fGrip)
-    pwm.setPWM(bgChan, 0, bGrip)
-    time.sleep(1)
-
-    # Ungrip right and left claws 
-    pwm.setPWM(rgChan, 0, servoMin)
-    pwm.setPWM(lgChan, 0, servoMin)
-    time.sleep(1)
-
     # Rotate front and back claws 
     pwm.setPWM(frChan, 0, fnCCW)
     pwm.setPWM(brChan, 0, bnCW)
@@ -606,9 +596,9 @@ def rotateZ():
     pwm.setPWM(bgChan, 0, servoMin)
     time.sleep(1)
 
-    # Rotate front and back claws
-    pwm.setPWM(frChan, 0, fnCW)
-    pwm.setPWM(brChan, 0, bnCCW)
+    # Rotate front and back claws back to default
+    pwm.setPWM(frChan, 0, fdefault)
+    pwm.setPWM(brChan, 0, bdefault)
     time.sleep(1)
 
     # Grip front and back claws
@@ -617,5 +607,58 @@ def rotateZ():
     time.sleep(1)
 
 
-#def rotateX():
+def rotateX():
+    # Grip right and left claws 
+    pwm.setPWM(rgChan, 0, rGrip)
+    pwm.setPWM(lgChan, 0, lGrip)
+    time.sleep(1)
     
+    # Ungrip front and back claws
+    pwm.setPWM(fgChan, 0, servoMin)
+    pwm.setPWM(bgChan, 0, servoMin)
+    time.sleep(1)
+
+    # Rotate front and back claws
+    pwm.setPWM(frChan, 0, fCW)
+    pwm.setPWM(brChan, 0, bCW)
+    time.sleep(1)
+
+    # Rotate right and left claws
+    pwm.setPWM(rrChan, 0, rnCW)
+    pwm.setPWM(lrChan, 0, lnCCW)
+    time.sleep(1)
+
+    # Grip front and back claws
+    pwm.setPWM(fgChan, 0, fGrip)
+    pwm.setPWM(bgChan, 0, bGrip)
+    time.sleep(1)
+
+    # Ungrip right and left claws
+    pwm.setPWM(rgChan, 0, servoMin)
+    pwm.setPWM(lgChan, 0, servoMin)
+    time.sleep(1)
+
+    # Rotate right and left claws back to default
+    pwm.setPWM(rrChan, 0, rdefault)
+    pwm.setPWM(lrChan, 0, ldefault)
+    time.sleep(1)
+
+    # Grip right and left claws
+    pwm.setPWM(rgChan, 0, rGrip)
+    pwm.setPWM(lgChan, 0, lGrip)
+    time.sleep(1)
+
+    # Ungrip front and back claws
+    pwm.setPWM(fgChan, 0, servoMin)
+    pwm.setPWM(bgChan, 0, servoMin)
+    time.sleep(1)
+
+    # Rotate front and back claws back to default 
+    pwm.setPWM(frChan, 0, fdefault)
+    pwm.setPWM(brChan, 0, bdefault)
+    time.sleep(1)
+
+    # Grip front and back claws
+    pwm.setPWM(fgChan, 0, fGrip)
+    pwm.setPWM(bgChan, 0, bGrip)
+    time.sleep(1)

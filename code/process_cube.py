@@ -55,10 +55,10 @@ for i in range(0,300):
 			if y < cutoff_y: 
 				y_under += 1
 
-print x_under
-print x_over 
-print y_under
-print y_over
+#print x_under
+#print x_over 
+#print y_under
+#print y_over
 
 if x_under < 100: 
 	cutoff_x = 100
@@ -85,10 +85,10 @@ for i in range(0,500):
 base_x = np.median(min_xs)
 base_y = np.median(min_ys)
 data.seek(0)
-print base_x
-print base_y
+#print base_x
+#print base_y
 
-print "begin"
+#print "begin"
 for line in data.readlines(): 
 	split = line.split() 
 	split = [int(s) for s in split]
@@ -109,10 +109,10 @@ for line in data.readlines():
 				if contains(sig, mid_x, mid_y, x, y):
 					blocks[num][sig-1] += 1
 
-print blocks
+#print blocks
 max_indices = [letters[b.index(max(b))] for b in blocks]
-print "max_indices"
-print max_indices
+#print "max_indices"
+#print max_indices
 ##process for white
 for i in range(0,9): 
 	if max(blocks[i]) < 5: 

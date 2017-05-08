@@ -31,18 +31,19 @@ close()
 seq = ''
 
 print('Inspecting yellow...')
-inspect() 
+inspect()
 seq += read()
 
-#rotateZ()
-#print('Inspecting blue...')
-#inspect()
-#seq += read()
+rotateZ()
+print('Inspecting blue...')
+inspect()
+seq += read()
 
-#rotateX()
-##print('Inspecting orange...')
-##seq += read() 
-##inspect()
+rotateX()
+print('Inspecting orange...')
+inspect()
+seq += read() 
+print(seq)
 
 ## rotateZ()
 ##print('Inspecting white...')
