@@ -1,12 +1,12 @@
 import os, sys, subprocess
 import numpy as np
+import math
 
-print 'rprksad'
 base_x = 120
 base_y = 50
 
-side = 50
-offset = 40
+side = 60
+offset = 50
 
 data = open(sys.argv[1], "r")
 
@@ -28,8 +28,9 @@ def contains(sig, mid_x, mid_y, x, y):
 	# 	print str(sig) + ":" + str(offset_x) + ":" +str(offset_y)
 	return (offset_x < offset and offset_y < offset)
 
-min_x = 500 
-min_y = 500
+cutoff = 100
+min_xs = [] 
+min_ys = []
 for i in range(0,500): 
 	line = data.readline() 
 	split = line.split() 
@@ -39,13 +40,14 @@ for i in range(0,500):
 	y = split[2]
 	w = split[3]
 	h = split[4]
-	if w*h>400 and x < min_x:
-		min_x = x 
-	if w*h>400 and y < min_y:
-		min_y = y 
+	if w*h>1000:
+		if x < cutoff:
+			min_xs.append(x)
+		if y < cutoff:
+			min_ys.append(y)
 
-base_x = min_x
-base_y = min_y
+base_x = np.median(min_xs)
+base_y = np.median(min_ys)
 data.seek(0)
 print base_x
 print base_y
