@@ -28,7 +28,43 @@ def contains(sig, mid_x, mid_y, x, y):
 	# 	print str(sig) + ":" + str(offset_x) + ":" +str(offset_y)
 	return (offset_x < offset and offset_y < offset)
 
-cutoff = 70
+cutoff = 100
+cutoff_x = 70
+cutoff_y = 70
+x_over = 0 
+x_under = 0 
+y_over = 0
+y_under = 0
+
+for i in range(0,300): 
+	line = data.readline() 
+	split = line.split() 
+	split = [int(s) for s in split]
+	sig = split[0]
+	x = split[1]
+	y = split[2]
+	w = split[3]
+	h = split[4]
+	if w*h>1000:
+		if x < cutoff:
+			x_over += 1
+			if x < cutoff_x: 
+				x_under += 1
+		if y < cutoff:
+			y_over += 1
+			if y < cutoff_y: 
+				y_under += 1
+
+print x_under
+print x_over 
+print y_under
+print y_over
+
+if x_under < 100: 
+	cutoff_x = 100
+if y_under < 100: 
+	cutoff_y = 100
+
 min_xs = [] 
 min_ys = []
 for i in range(0,500): 
@@ -41,9 +77,9 @@ for i in range(0,500):
 	w = split[3]
 	h = split[4]
 	if w*h>1000:
-		if x < cutoff:
+		if x < cutoff_x:
 			min_xs.append(x)
-		if y < cutoff:
+		if y < cutoff_y:
 			min_ys.append(y)
 
 base_x = np.median(min_xs)
