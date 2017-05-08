@@ -28,7 +28,7 @@ def contains(sig, mid_x, mid_y, x, y):
 	# 	print str(sig) + ":" + str(offset_x) + ":" +str(offset_y)
 	return (offset_x < offset and offset_y < offset)
 
-cutoff = 100
+cutoff = 70
 min_xs = [] 
 min_ys = []
 for i in range(0,500): 
@@ -49,10 +49,10 @@ for i in range(0,500):
 base_x = np.median(min_xs)
 base_y = np.median(min_ys)
 data.seek(0)
-print base_x
-print base_y
+#print base_x
+#print base_y
 
-print "begin"
+#print "begin"
 for line in data.readlines(): 
 	split = line.split() 
 	split = [int(s) for s in split]
@@ -73,10 +73,10 @@ for line in data.readlines():
 				if contains(sig, mid_x, mid_y, x, y):
 					blocks[num][sig-1] += 1
 
-print blocks
+#print blocks
 max_indices = [letters[b.index(max(b))] for b in blocks]
-print "max_indices"
-print max_indices
+#print "max_indices"
+#print max_indices
 #process for white
 for i in range(0,9): 
 	if max(blocks[i]) < 5: 

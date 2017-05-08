@@ -36,7 +36,7 @@ inspect()
 print('Inspecting yellow...')
 subprocess.call(['./read_cube.sh'])
 subprocess.call("sudo python process_cube.py cleaned.txt > seq.txt", shell=True)
-#rotate()
+rotate()
 
 #print('Inspecting orange...')
 ##inspect()
