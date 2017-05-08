@@ -34,7 +34,7 @@ print('Inspecting yellow...')
 inspect() 
 seq += read()
 
-rotateZ()
+#rotateZ()
 #print('Inspecting blue...')
 #inspect()
 #seq += read()
