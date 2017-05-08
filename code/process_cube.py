@@ -39,8 +39,9 @@ for i in range(0,500):
 	y = split[2]
 	w = split[3]
 	h = split[4]
-	if w*h>400 and x < min_x and y < min_y:
+	if w*h>400 and x < min_x:
 		min_x = x 
+	if w*h>400 and y < min_y:
 		min_y = y 
 
 base_x = min_x
