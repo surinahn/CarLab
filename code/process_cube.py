@@ -113,7 +113,7 @@ print blocks
 max_indices = [letters[b.index(max(b))] for b in blocks]
 print "max_indices"
 print max_indices
-#process for white
+##process for white
 for i in range(0,9): 
 	if max(blocks[i]) < 5: 
 		max_indices[i] = letters[4]
