@@ -580,16 +580,18 @@ def turnD(x):
         pwm.setPWM(lgChan, 0, lGrip)
         time.sleep(0.75)
 
-def rotate():
-    #Ungrip front and back claws
+def rotateZ():
+    # Grip front and back claws
     pwm.setPWM(fgChan, 0, fGrip)
     pwm.setPWM(bgChan, 0, bGrip)
     time.sleep(1)
 
+    # Ungrip right and left claws 
     pwm.setPWM(rgChan, 0, servoMin)
     pwm.setPWM(lgChan, 0, servoMin)
     time.sleep(1)
 
+    # Rotate front and back claws 
     pwm.setPWM(frChan, 0, fnCCW)
     pwm.setPWM(brChan, 0, bnCW)
     pwm.setPWM(rrChan, 0, rnCCW)
@@ -605,4 +607,5 @@ def rotate():
     time.sleep(1)
 
 
+#def rotateX():
     

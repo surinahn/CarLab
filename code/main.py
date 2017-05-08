@@ -16,47 +16,6 @@ while userInput != 'c':
     userInput = raw_input("Press c when ready to grip: ")
 close()
 
-#turnF(0)
-#turnF(1)
-#turnR(0)
-#turnR(1)
-#turnL(0)
-#turnL(1)
-#turnB(0)
-#turnB(1)
-#turnU(0)
-#turnU(1)
-#turnD(0)
-#turnD(1)
-
-
-seq = ''
-
-inspect() 
-print('Inspecting yellow...')
-subprocess.call(['./read_cube.sh'])
-subprocess.call("sudo python process_cube.py cleaned.txt > seq.txt", shell=True)
-rotate()
-
-#print('Inspecting orange...')
-##inspect()
-##seq += read() 
-##
-##print('Inspecting white...')
-##seq += read() 
-##inspect()
-##
-##print('Inspecting pink...')
-##seq += read() 
-##inspect()
-##
-##print('Inspecting blue...')
-##seq += read() 
-##inspect()
-##
-##print('Inspecting green...')
-##seq += read() 
-##inspect()
 
 ############################
 #     INSPECTION PHASE     #
@@ -65,41 +24,44 @@ rotate()
 
 # Read input cube configuration from pixy cam
 
-
-'''
 # (Inspect each side by rotating it)
 # Camera is looking down on the cube (at the Yellow face)
 # Front = Orange, Right = Blue, Left = Green, Up = Yellow, Down = White, Back = Pink
 
-# What if the claws interfere with the camera vision? 
+seq = ''
 
-# Capture the up (yellow) face
 print('Inspecting yellow...')
+inspect() 
+seq += read()
 
-# Rotate the cube CW with right claw 
+rotateZ()
+#print('Inspecting blue...')
+#inspect()
+#seq += read()
 
-# Capture the front (orange) face
-print('Inspecting orange...')
+#rotateX()
+##print('Inspecting orange...')
+##seq += read() 
+##inspect()
 
-# Rotate the cube CW with right claw 
+## rotateZ()
+##print('Inspecting white...')
+##seq += read() 
+##inspect()
 
-# Capture the down (white) face
-print('Inspecting white...')
+## rotateX()
+##print('Inspecting green...')
+##seq += read() 
+##inspect()
 
-# Rotate the cube CW with right claw 
-
-# Capture the back (pink) face
-print('Inspecting pink...')
-
-# Capture the right (blue) face
-print('Inspecting blue...')
-
-# Capture the left (green) face
-print('Inspecting green...')
+## rotateZ()
+##print('Inspecting pink...')
+##seq += read() 
+##inspect()
 
 # Return to original orientation
+## rotateX()
 print('Done Inspecting!\n')
-
 
 
 ############################
@@ -123,6 +85,7 @@ print('\n')
 print("Solving the cube...")
 moves = solution.split()
 
+'''
 
 for m in moves:
     print(m)
