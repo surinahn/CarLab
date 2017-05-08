@@ -254,7 +254,7 @@ def turnL(x):
     pwm.setPWM(brChan, 0, bCW)
     time.sleep(0.75)
     pwm.setPWM(fgChan, 0, fGrip)
-    #pwm.setPWM(bgChan, 0, bGrip)
+    pwm.setPWM(bgChan, 0, bGrip)
     time.sleep(0.75)
     
     if x == 0:

@@ -8,7 +8,7 @@ import subprocess
 
 
 # Initialize the claws
-#initialize()
+initialize()
 
 # Close claws
 userInput = ''
@@ -21,7 +21,7 @@ close()
 #turnR(0)
 #turnR(1)
 #turnL(0)
-turnL(1)
+#turnL(1)
 #turnB(0)
 #turnB(1)
 #turnU(0)
@@ -32,8 +32,10 @@ turnL(1)
 
 seq = ''
 
-#inspect() 
-#print('Inspecting yellow...')
+inspect() 
+print('Inspecting yellow...')
+subprocess.call(['./read_cube.sh'])
+subprocess.call("sudo python process_cube.py cleaned.txt > seq.txt", shell=True)
 #rotate()
 
 #print('Inspecting orange...')
@@ -60,11 +62,11 @@ seq = ''
 #     INSPECTION PHASE     #
 ############################
 
-'''
-# Read input cube configuration from pixy cam
-subprocess.call(['./read_cube.sh'])
-subprocess.call("process_cube.py cleaned.txt", shell=True)
 
+# Read input cube configuration from pixy cam
+
+
+'''
 # (Inspect each side by rotating it)
 # Camera is looking down on the cube (at the Yellow face)
 # Front = Orange, Right = Blue, Left = Green, Up = Yellow, Down = White, Back = Pink
@@ -104,6 +106,7 @@ print('Done Inspecting!\n')
 #       SOLVING PHASE      #
 ############################
 
+
 # Convert the cube configuration into kociemba format
 config = 'DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD'
 print("Input Configuration: ")
@@ -120,9 +123,44 @@ print('\n')
 print("Solving the cube...")
 moves = solution.split()
 
+
 for m in moves:
     print(m)
-    time.sleep(1)
+    if m == 'F':
+        turnF(0)
+    elif m == "F'":
+        turnF(1)
+    elif m == "F2":
+        turnF(2)
+    elif m == 'R':
+        turnR(0)
+    elif m == "R'":
+        turnR(1)
+    elif m == "R2":
+        turnR(2)
+    elif m == 'L':
+        turnL(0)
+    elif m == "L'":
+        turnL(1)
+    elif m == "L2":
+        turnL(2)
+    elif m == 'B':
+        turnB(0)
+    elif m == "B'":
+        turnB(1)
+    elif m == "B2":
+        turnB(2)
+    elif m == 'U':
+        turnU(0)
+    elif m == "U'":
+        turnU(1)
+    elif m == "U2":
+        turnU(2)
+    elif m == 'D':
+        turnD(0)
+    elif m == "D'":
+        turnD(1)
+    elif m == "D2":
+        turnD(2)
 '''
-
 
