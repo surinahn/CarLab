@@ -108,9 +108,13 @@ def close():
     pwm.setPWM(brChan, 0, bdefault)
     time.sleep(1)
 
-def inspect():
+def openrl():
     pwm.setPWM(rgChan, 0, servoMin)
     pwm.setPWM(lgChan, 0, servoMin)
+
+def openbf():
+    pwm.setPWM(bgChan, 0, servoMin)
+    pwm.setPWM(fgChan, 0, servoMin)
     
 
 # Turn front side
@@ -580,10 +584,14 @@ def turnD(x):
         pwm.setPWM(lgChan, 0, lGrip)
         time.sleep(0.75)
 
-def rotateZ():
+def rotate1():
     # Rotate front and back claws 
     pwm.setPWM(frChan, 0, fnCCW)
     pwm.setPWM(brChan, 0, bnCW)
+    time.sleep(1)
+
+    pwm.setPWM(rrChan, 0, rCW)
+    pwm.setPWM(lrChan, 0, lCCW)
     time.sleep(1)
 
     # Grip right and left claws 
@@ -596,69 +604,81 @@ def rotateZ():
     pwm.setPWM(bgChan, 0, servoMin)
     time.sleep(1)
 
-    # Rotate front and back claws back to default
-    pwm.setPWM(frChan, 0, fdefault)
-    pwm.setPWM(brChan, 0, bdefault)
-    time.sleep(1)
+    openbf()
 
-    # Grip front and back claws
+
+def rotate2():
     pwm.setPWM(fgChan, 0, fGrip)
     pwm.setPWM(bgChan, 0, bGrip)
     time.sleep(1)
 
+    pwm.setPWM(rgChan, 0, rUngrip)
+    pwm.setPWM(lgChan, 0, lUngrip)
 
-def rotateX():
-    # Grip right and left claws 
-    pwm.setPWM(rgChan, 0, rGrip)
-    pwm.setPWM(lgChan, 0, lGrip)
-    time.sleep(1)
-    
-    # Ungrip front and back claws
-    pwm.setPWM(fgChan, 0, servoMin)
-    pwm.setPWM(bgChan, 0, servoMin)
-    time.sleep(1)
-
-    # Rotate front and back claws
-    pwm.setPWM(frChan, 0, fCW)
-    pwm.setPWM(brChan, 0, bCW)
-    time.sleep(1)
-
-    # Rotate right and left claws
-    pwm.setPWM(rrChan, 0, rnCW)
-    pwm.setPWM(lrChan, 0, lnCCW)
-    time.sleep(1)
-
-    # Grip front and back claws
-    pwm.setPWM(fgChan, 0, fGrip)
-    pwm.setPWM(bgChan, 0, bGrip)
-    time.sleep(1)
-
-    # Ungrip right and left claws
-    pwm.setPWM(rgChan, 0, servoMin)
-    pwm.setPWM(lgChan, 0, servoMin)
-    time.sleep(1)
-
-    # Rotate right and left claws back to default
     pwm.setPWM(rrChan, 0, rdefault)
     pwm.setPWM(lrChan, 0, ldefault)
     time.sleep(1)
 
-    # Grip right and left claws
     pwm.setPWM(rgChan, 0, rGrip)
     pwm.setPWM(lgChan, 0, lGrip)
     time.sleep(1)
 
-    # Ungrip front and back claws
-    pwm.setPWM(fgChan, 0, servoMin)
-    pwm.setPWM(bgChan, 0, servoMin)
+    # Rotate front and back claws
+    openbf()
+    pwm.setPWM(frChan, 0, fCW+10)
+    pwm.setPWM(brChan, 0, bCCW-10)
+    time.sleep(1)
+    pwm.setPWM(rrChan, 0, rnCW)
+    pwm.setPWM(lrChan, 0, lnCCW)
     time.sleep(1)
 
-    # Rotate front and back claws back to default 
+def rotate3():
+    pwm.setPWM(fgChan, 0, fGrip)
+    pwm.setPWM(bgChan, 0, bGrip)
+    time.sleep(1)
+
+    openrl()
+    pwm.setPWM(rrChan, 0, rdefault)
+    pwm.setPWM(lrChan, 0, ldefault)
+    time.sleep(1)
+
     pwm.setPWM(frChan, 0, fdefault)
     pwm.setPWM(brChan, 0, bdefault)
     time.sleep(1)
 
-    # Grip front and back claws
+def rotate4():
+    pwm.setPWM(rgChan, 0, rGrip)
+    pwm.setPWM(lgChan, 0, lGrip)
+    time.sleep(1)
+
+    openbf()
+    time.sleep(1)
+    pwm.setPWM(frChan, 0, fCW)
+    pwm.setPWM(brChan, 0, bCCW)
+    time.sleep(1)
+
+    pwm.setPWM(rrChan, 0, rnCW)
+    pwm.setPWM(lrChan, 0, lnCCW)
+    time.sleep(1)
+
+    pwm.setPWM(fgChan, 0, fGrip)
+    pwm.setPWM(bgChan, 0, bGrip)
+    time.sleep(1)
+
+    openrl()
+    pwm.setPWM(rrChan, 0, rdefault)
+    pwm.setPWM(lrChan, 0, ldefault)
+    time.sleep(1)
+
+    pwm.setPWM(rgChan, 0, rGrip)
+    pwm.setPWM(lgChan, 0, lGrip)
+    time.sleep(1)
+
+    openbf()
+    pwm.setPWM(frChan, 0, fdefault)
+    pwm.setPWM(brChan, 0, bdefault)
+    time.sleep(1)
+
     pwm.setPWM(fgChan, 0, fGrip)
     pwm.setPWM(bgChan, 0, bGrip)
     time.sleep(1)

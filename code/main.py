@@ -6,6 +6,32 @@ from read_cube import *
 import time
 import subprocess
 
+sqr_dict = {'U1',}
+
+corners_colors = ['ULB']
+corners_indices = 
+
+
+# Rotate side by 180 degrees to fit kociemba format (for yellow side only)
+def rot180(seq):
+    rotSeq = ''
+    for i in range(len(seq)-1, -1, -1):
+        rotSeq += seq[i]
+    return rotSeq
+
+# Permute side to fit kociemba format (for blue, orange, and white sides only) 
+def permute(seq):
+    perSeq = ''
+    perSeq += seq[2]
+    perSeq += seq[5]
+    perSeq += seq[8]
+    perSeq += seq[1]
+    perSeq += seq[4]
+    perSeq += seq[7]
+    perSeq += seq[0]
+    perSeq += seq[3]
+    perSeq += seq[6]
+    return perSeq
 
 # Initialize the claws
 initialize()
@@ -31,63 +57,97 @@ close()
 seq = ''
 
 print('Inspecting yellow...')
-inspect()
-seq += read()
+openrl()
 
-rotateZ()
+side = rot180(read())
+side_ = side[0:4]
+side_ += 'U'
+side_ += side[5:]
+seq += side_
+print(side_)
+
+rotate1()
 print('Inspecting blue...')
-inspect()
-seq += read()
+side = permute(read())
+side_ = side[0:4]
+side_ += 'R'
+side_ += side[5:]
+seq += side_
+print(side_)
 
-rotateX()
+rotate2()
 print('Inspecting orange...')
-inspect()
-seq += read() 
-print(seq)
+side = permute(read())
+side_ = side[0:4]
+side_ += 'F'
+side_ += side[5:]
+seq += side_
+print(side_)
 
-## rotateZ()
-##print('Inspecting white...')
-##seq += read() 
-##inspect()
+rotate3()
+print('Inspecting white...')
+side = permute(read())
+side_ = side[0:4]
+side_ += 'D'
+side_ += side[5:]
+seq += side_
+print(side_)
 
-## rotateX()
-##print('Inspecting green...')
-##seq += read() 
-##inspect()
+rotate2()
+print('Inspecting green...')
+side = read()
+side_ = side[0:4]
+side_ += 'L'
+side_ += side[5:]
+seq += side_
+print(side_)
 
-## rotateZ()
-##print('Inspecting pink...')
-##seq += read() 
-##inspect()
+rotate3()
+print('Inspecting pink...')
+side = read()
+side_ = side[0:4]
+side_ += 'B'
+side_ += side[5:]
+seq += side_
+print(side_)
 
 # Return to original orientation
-## rotateX()
+rotate4()
 print('Done Inspecting!\n')
-
 
 ############################
 #       SOLVING PHASE      #
 ############################
 
-
 # Convert the cube configuration into kociemba format
-config = 'DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD'
+#config = 'DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD'
 print("Input Configuration: ")
-print(config)
+#print(config)
+print(seq)
 print('\n')
 
 # Pass the cube configuration into the kociemba solver
-solution = kociemba.solve(config)
+#solution = kociemba.solve(config)
+solution = kociemba.solve(seq) 
 print("Solution: ")
 print(solution)
 print('\n')
+
+# Initialize the claws
+initialize()
+
+# Close claws
+userInput = ''
+while userInput != 'c':
+    userInput = raw_input("Press c when ready to grip: ")
+close()
 
 # Solve the cube
 print("Solving the cube...")
 moves = solution.split()
 
-'''
 
+'''
 for m in moves:
     print(m)
     if m == 'F':

@@ -37,8 +37,8 @@ y_over = 0
 y_under = 0
 
 for i in range(0,300): 
-	line = data.readline() 
-	split = line.split() 
+	line = data.readline()
+	split = line.split()
 	split = [int(s) for s in split]
 	sig = split[0]
 	x = split[1]
@@ -71,16 +71,17 @@ for i in range(0,500):
 	line = data.readline() 
 	split = line.split() 
 	split = [int(s) for s in split]
-	sig = split[0]
-	x = split[1]
-	y = split[2]
-	w = split[3]
-	h = split[4]
-	if w*h>1000:
-		if x < cutoff_x:
-			min_xs.append(x)
-		if y < cutoff_y:
-			min_ys.append(y)
+	if len(split) > 4 :
+                sig = split[0]
+                x = split[1]
+                y = split[2]
+                w = split[3]
+                h = split[4]
+                if w*h>1000:
+                        if x < cutoff_x:
+                                min_xs.append(x)
+                        if y < cutoff_y:
+                                min_ys.append(y)
 
 base_x = np.median(min_xs)
 base_y = np.median(min_ys)
@@ -92,11 +93,12 @@ data.seek(0)
 for line in data.readlines(): 
 	split = line.split() 
 	split = [int(s) for s in split]
-	sig = split[0]
-	x = split[1]
-	y = split[2]
-	w = split[3]
-	h = split[4]
+	if len(split) > 4:
+                sig = split[0]
+                x = split[1]
+                y = split[2]
+                w = split[3]
+                h = split[4]
 
 	for j in range(0,3): 
 		for i in range(0,3): 
