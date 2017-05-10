@@ -37,7 +37,7 @@ rGrip = 410
 lUngrip = 400
 lGrip = 480
 bUngrip = 320
-bGrip = 455
+bGrip = 475
 
 # PWM values for turning each side
 # CW = clockwise, CCW = counter-clockwise, 2 = 180 degrees (turn twice)
@@ -48,15 +48,19 @@ fCCW = 630
 rdefault = 370
 rCW = 125
 rCCW = 640
+#rCCW = 632
 ldefault = 380
 lCW = 125
-lCCW = 645
+#lCCW = 645
+lCCW = 650
 bdefault = 370
-bCW = 117
-bCCW = 640
+#bCW = 117
+bCW = 112
+#bCCW = 640
+bCCW = 630
 
 fnCCW = fCCW - 16
-bnCW = bCW + 16
+bnCW = bCW + 21
 
 fnCW = fCW + 30 
 bnCCW = bCCW - 30
@@ -80,7 +84,7 @@ def initialize():
     pwm.setPWM(lgChan, 0, servoMin)
     pwm.setPWM(bgChan, 0, servoMin)
     time.sleep(2)
-    pwm.setPWM(fgChan, 0, servoMax)
+    pwm.setPWM(fgChan, 0, fGrip+50)
     pwm.setPWM(rgChan, 0, servoMax)
     pwm.setPWM(lgChan, 0, servoMax)
     pwm.setPWM(bgChan, 0, servoMax)
@@ -255,7 +259,7 @@ def turnL(x):
     pwm.setPWM(bgChan, 0, bUngrip)
     time.sleep(0.75)
     pwm.setPWM(frChan, 0, fCW)
-    pwm.setPWM(brChan, 0, bCW)
+    pwm.setPWM(brChan, 0, bCW+30)
     time.sleep(0.75)
     pwm.setPWM(fgChan, 0, fGrip)
     pwm.setPWM(bgChan, 0, bGrip)
@@ -326,6 +330,13 @@ def turnL(x):
 
 # Turn back side
 def turnB(x):
+    # Get right claw out of the way
+    pwm.setPWM(rgChan, 0, rUngrip)
+    time.sleep(0.75)
+    pwm.setPWM(rrChan, 0, rdefault+30)
+    time.sleep(0.75)
+    pwm.setPWM(rgChan, 0, rGrip)
+    time.sleep(0.75)
     if x == 0:
         # Turn claw
         pwm.setPWM(brChan, 0, bCW)
@@ -377,7 +388,11 @@ def turnB(x):
         # Grip claw
         pwm.setPWM(bgChan, 0, bGrip)
         time.sleep(0.75)
-
+    pwm.setPWM(rgChan, 0, rUngrip)
+    time.sleep(0.75)
+    pwm.setPWM(rrChan, 0, rdefault)
+    time.sleep(0.75)
+    pwm.setPWM(rgChan, 0, rGrip)
 
 # Turn up side
 def turnU(x):
@@ -393,15 +408,27 @@ def turnU(x):
         time.sleep(0.75)
         # Grip right claw
         pwm.setPWM(rgChan, 0, rGrip)
+        pwm.setPWM(lgChan, 0, lGrip)
         time.sleep(0.75)
+
+        # Get back claw out of the way
+        pwm.setPWM(bgChan, 0, bUngrip)
+        time.sleep(0.75)
+        
         # Turn right claw CW
         pwm.setPWM(rrChan, 0, rCW)
         time.sleep(0.75)
+
+        # Put back claw back
+        pwm.setPWM(bgChan, 0, bGrip)
+        time.sleep(0.75)
+        
         # Ungrip right claw
         pwm.setPWM(rgChan, 0, rUngrip)
         time.sleep(0.75)
         # Turn right claw back
         pwm.setPWM(rrChan, 0, rdefault)
+        pwm.setPWM(lgChan, 0, lUngrip)
         time.sleep(0.75)
         # Turn front and back claws back (up side is now back to normal)
         pwm.setPWM(frChan, 0, fdefault)
@@ -422,15 +449,23 @@ def turnU(x):
         time.sleep(0.75)
         # Grip right claw
         pwm.setPWM(rgChan, 0, rGrip)
+        pwm.setPWM(lgChan, 0, lGrip)
+        time.sleep(0.75)
+        # Get back claw out of the way
+        pwm.setPWM(bgChan, 0, bUngrip)
         time.sleep(0.75)
         # Turn right claw CCW
-        pwm.setPWM(rrChan, 0, rCCW)
+        pwm.setPWM(rrChan, 0, rCCW+10)
+        time.sleep(0.75)
+        # Put back claw back
+        pwm.setPWM(bgChan, 0, bGrip)
         time.sleep(0.75)
         # Ungrip right claw
         pwm.setPWM(rgChan, 0, rUngrip)
         time.sleep(0.75)
         # Turn right claw back
         pwm.setPWM(rrChan, 0, rdefault)
+        pwm.setPWM(lgChan, 0, lUngrip)
         time.sleep(0.75)
         # Turn front and back claws back (up side is now back to normal)
         pwm.setPWM(frChan, 0, fdefault)
@@ -451,6 +486,10 @@ def turnU(x):
         time.sleep(0.75)
         # Grip right claw
         pwm.setPWM(rgChan, 0, rGrip)
+        pwm.setPWM(lgChan, 0, lGrip)
+        time.sleep(0.75)
+        # Get back claw out of the way
+        pwm.setPWM(bgChan, 0, bUngrip)
         time.sleep(0.75)
         # Turn right claw CW
         pwm.setPWM(rrChan, 0, rCW)
@@ -467,11 +506,15 @@ def turnU(x):
         # Turn right claw CW
         pwm.setPWM(rrChan, 0, rCW)
         time.sleep(0.75)
+        # Put back claw back
+        pwm.setPWM(bgChan, 0, bGrip)
+        time.sleep(0.75)
         # Ungrip right claw
         pwm.setPWM(rgChan, 0, rUngrip)
         time.sleep(0.75)
         # Turn right claw back
         pwm.setPWM(rrChan, 0, rdefault)
+        pwm.setPWM(lgChan, 0, lUngrip)
         time.sleep(0.75)
         # Turn front and back claws back (up side is now back to normal)
         pwm.setPWM(frChan, 0, fdefault)
