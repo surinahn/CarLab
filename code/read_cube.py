@@ -1,4 +1,6 @@
 import os, sys, subprocess
+import kociemba
+import itertools
 
 def read():
         #subprocess.call(['./read_cube.sh'])
@@ -44,10 +46,46 @@ edge_indices = [[sqrs['U2'], sqrs['B2']], [sqrs['U4'], sqrs['L2']],
 
 edges = ['UB', 'UL', 'UR', 'UF', 'RF', 'RB', 'RD', 'FL', 'FD', 'DL', 'DB', 'LB']
 
+letters = ['B','F','U','L','D','R']
+
 #seq = 'DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD'
 #seq = 'DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD'
 #seq = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBLB'
-seq = 'UUUUUUUUURRDLRLDRDFFFDFBRLBDFDRDBRBFLLLRLFDFFBBBDBDLDB'
+
+#seq = 'UUUUUUUUURRDLRLDRDFFFDFBRLBDFDRDBRBFLLLRLFDFFBBBDBDLDB'
+seq = 'UUUUUUUUURRDLRLDRDFFFDFBRLBDFDRDBRBFLLLRLFDFFBBBDBDLDU'
+
+
+def counts(ss): 
+        count = [0,0,0,0,0,0]
+        for s in ss: 
+                index = letters.index(s)
+                count[index] += 1
+        print count
+        return count
+
+def missings(cs): 
+        missing = [] 
+        for i in range(0,6):
+                c = cs[i] 
+                diff = 9 - c 
+                if diff > 0: 
+                        for j in range(0,diff): 
+                                missing.append(letters[i])
+        print missing
+        return missing
+
+def extras(cs): 
+        extra = [] 
+        for i in range(0,6):
+                c = cs[i] 
+                diff = c - 9 
+                if diff > 0: 
+                        for j in range(0,diff): 
+                                extra.append(letters[i])
+        print extra
+        return extra
+
 
 def set_seq(s): 
         global seq 
@@ -81,6 +119,9 @@ def find_wrongs(ws, rs):
                 found.append(w)
         return wrongs
 
+def D_diff(a,b): 
+        return 'D' in list(set(a)-set(b)) or a.count('D') < 2
+
 def least_diffs(bs, cs):
         lenb = len(bs)
         lenc = len(cs)
@@ -90,19 +131,23 @@ def least_diffs(bs, cs):
                 diffs = [] 
                 for j in range(0, lenc):
                         c = cs[j]
-                        if 'D' in find_wrongs(b,c):
+                        if not D_diff(b,c):
                                 leasts.append([b,c])
+        print "leasts"
+        print leasts
 
         return leasts 
                                      
                 
 
 #wrong and right not alphad
-def correct_corner(position, wrong, right): 
+def correct_corner(position, wrong, right, sq): 
         new_color = list(set(right) - set(wrong))
         old_color = list(set(wrong) - set(right))
+
         if len(old_color) < len(new_color): 
-                old_color = get_dup(wrong)
+                old_color += get_dup(wrong)
+
         wrongs = len(new_color)
 
         for i in range(0, wrongs): 
@@ -110,9 +155,9 @@ def correct_corner(position, wrong, right):
 
                 index = indices[wrong.index(old_color[i])]
 
-                s = list(seq)
+                s = list(sq)
                 s[index] = new_color[i]
-                set_seq(s)
+                return ''.join(s)
 
 def correct_edge(position, wrong, right): 
         wrong_index = 0 
@@ -169,61 +214,131 @@ def problem_areas(s):
         whites = s.count('D')
         seq = ''
 
+def generate_seq_corner(missing_corners, wrong_corners, sq): 
+        wrong_positions_c = [found_corners.index(w) for w in wrong_corners]
+        seq = sq 
 
-#set_seq(s)
-found_corners = [''.join(get_corner(i)) for i in corner_indices]
+        wrongs = len(wrong_positions_c)
+        for i in range(0, wrongs): 
+                seq = correct_corner(wrong_positions_c[i], 
+                        wrong_corners[i], 
+                        missing_corners[i], seq)
 
-alpha_found_corners = alpha(found_corners)
-alpha_corners =  alpha(corners)
-
-print 'alpha_found_corners'
-print alpha_found_corners
-print 'alpha_corner'
-print alpha_corners
-
-missing_corners = list(set(alpha_corners) - set(alpha_found_corners))
-wrong_corners = find_wrongs(alpha_found_corners, alpha_corners)
-print least_diffs(wrong_corners, missing_corners) 
-wrong_positions = [alpha_found_corners.index(w) for w in wrong_corners]
-
-print 'missing_corners'
-print missing_corners
-print 'wrong_corner'
-print wrong_corners
-
-wrongs = len(wrong_positions)
-for i in range(0, wrongs): 
-        correct_corner(wrong_positions[i], 
-                found_corners[alpha_found_corners.index(wrong_corners[i])], 
-                corners[alpha_corners.index(missing_corners[i])])
-
-print seq
+        print seq
+        return seq 
 
 
-found_edges = [''.join(get_edge(i)) for i in edge_indices]
+# count = counts(seq)
+# missings(count)
+# extras(count)
 
-alpha_found_edges = alpha(found_edges)
-alpha_edges =  alpha(edges)
+def bookkeep(s): 
+        set_seq(s)
+        found_corners = [''.join(get_corner(i)) for i in corner_indices]
 
-# print alpha_found_edges
-# print alpha_edges
+        alpha_found_corners = alpha(found_corners)
+        alpha_corners =  alpha(corners)
 
-missing_edges = list(set(alpha_edges) - set(alpha_found_edges))
-wrong_edges = find_wrongs(alpha_found_edges, alpha_edges)
-wrong_positions = [alpha_found_edges.index(w) for w in wrong_edges]
+        alpha_missing_corners = list(set(alpha_corners) - set(alpha_found_corners))
+        alpha_wrong_corners = find_wrongs(alpha_found_corners, alpha_corners)
 
-# print 'missing_edges'
-# print missing_edges
-# print 'wrong_edges'
-# print wrong_edges
+        missing_corners = [corners[alpha_corners.index(a)] for a in alpha_missing_corners]
+        wrong_corners = [found_corners[alpha_found_corners.index(a)] for a in alpha_wrong_corners]
 
-wrongs = len(wrong_positions)
-for i in range(0, wrongs): 
-        correct_edge(wrong_positions[i], 
-                found_edges[alpha_found_edges.index(wrong_edges[i])], 
-                edges[alpha_edges.index(missing_edges[i])])
+
+        missing_perms = list(itertools.permutations(missing_corners))
+        wrong_perms = list(itertools.permutations(wrong_corners))
+
+        sq = seq
+        m_count = 0 
+        w_count = 0 
+
+        simple_perms = True 
+
+        while simple_perms:
+                try: 
+                        sq = generate_seq_corner(missing_perms[m_count], wrong_perms[w_count], seq)
+                        solution = kociemba.solve(sq) 
+                        print solution
+                        break
+                except ValueError: 
+                        
+                        w_count += 1
+                        if w_count >= len(wrong_perms): 
+                                w_count = 0
+                                m_count += 1
+                        if m_count >= len(missing_perms):
+                                simple_perms = False
+                        print "try again"
+
+
+        print "end simple perms"
+# print seq
+
+
+# found_edges = [''.join(get_edge(i)) for i in edge_indices]
+
+# alpha_found_edges = alpha(found_edges)
+# alpha_edges =  alpha(edges)
+
+# # print alpha_found_edges
+# # print alpha_edges
+
+# missing_edges = list(set(alpha_edges) - set(alpha_found_edges))
+# wrong_edges = find_wrongs(alpha_found_edges, alpha_edges)
+# wrong_positions = [alpha_found_edges.index(w) for w in wrong_edges]
+
+# # print 'missing_edges'
+# # print missing_edges
+# # print 'wrong_edges'
+# # print wrong_edges
+
+# wrongs = len(wrong_positions)
+# for i in range(0, wrongs): 
+#         correct_edge(wrong_positions[i], 
+#                 found_edges[alpha_found_edges.index(wrong_edges[i])], 
+#                 edges[alpha_edges.index(missing_edges[i])])
+
+
+# print seq 
+
+# while True:
+#         try: 
+#                 solution = kociemba.solve(seq) 
+#                 break 
+#         except ValueError: 
+#                 save = missing_corners.pop(0)
+#                 missing_corners.append(save)
+#                 print missing_corners
+#                 for i in range(0, wrongs): 
+#                         correct_corner(wrong_positions_c[i], 
+#                         found_corners[alpha_found_corners.index(wrong_corners[i])], 
+#                         corners[alpha_corners.index(missing_corners[i])])
+
+#                 print "try again"
+
+# print solution
 
 #return seq
+
+
+
+
+
+
+# print "least diffs"
+# pairs = least_diffs(wrong_corners, missing_corners) 
+# print "pairs"
+# print pairs
+# for i in range(0, len(pairs)): 
+#         wrong_corners.remove(pairs[i][0])
+#         missing_corners.remove(pairs[i][1])
+#         print 'missing_corners'
+#         print missing_corners
+#         print 'wrong_corners'
+#         print wrong_corners
+#         wrong_corners.append(pairs[i][0])
+#         missing_corners.append(pairs[i][1])
 
 
 

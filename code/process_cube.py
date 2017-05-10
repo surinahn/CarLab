@@ -1,6 +1,7 @@
 import os, sys, subprocess
 import numpy as np
 import math
+import kociemba 
 
 base_x = 120
 base_y = 50
@@ -121,4 +122,6 @@ for i in range(0,9):
 		max_indices[i] = letters[4]
 string = ''.join(max_indices)
 print string
+
+
 
