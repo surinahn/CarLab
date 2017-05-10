@@ -147,54 +147,55 @@ def alpha(ar):
         return alphad
 
 
+def bookkeep(s): 
+        set_seq(s)
+        found_corners = [''.join(get_corner(i)) for i in corner_indices]
 
-found_corners = [''.join(get_corner(i)) for i in corner_indices]
+        alpha_found_corners = alpha(found_corners)
+        alpha_corners =  alpha(corners)
 
-alpha_found_corners = alpha(found_corners)
-alpha_corners =  alpha(corners)
+        missing_corners = list(set(alpha_corners) - set(alpha_found_corners))
+        wrong_corners = find_wrongs(alpha_found_corners, alpha_corners)
+        wrong_positions = [alpha_found_corners.index(w) for w in wrong_corners]
 
-missing_corners = list(set(alpha_corners) - set(alpha_found_corners))
-wrong_corners = find_wrongs(alpha_found_corners, alpha_corners)
-wrong_positions = [alpha_found_corners.index(w) for w in wrong_corners]
+        print 'missing_corners'
+        print missing_corners
+        print 'wrong_corner'
+        print wrong_corners
 
-print 'missing_corners'
-print missing_corners
-print 'wrong_corner'
-print wrong_corners
+        wrongs = len(wrong_positions)
+        for i in range(0, wrongs): 
+                correct_corner(wrong_positions[i], 
+                        found_corners[alpha_found_corners.index(wrong_corners[i])], 
+                        corners[alpha_corners.index(missing_corners[i])])
 
-wrongs = len(wrong_positions)
-for i in range(0, wrongs): 
-        correct_corner(wrong_positions[i], 
-                found_corners[alpha_found_corners.index(wrong_corners[i])], 
-                corners[alpha_corners.index(missing_corners[i])])
-
-print seq
+        print seq
 
 
-found_edges = [''.join(get_edge(i)) for i in edge_indices]
+        found_edges = [''.join(get_edge(i)) for i in edge_indices]
 
-alpha_found_edges = alpha(found_edges)
-alpha_edges =  alpha(edges)
+        alpha_found_edges = alpha(found_edges)
+        alpha_edges =  alpha(edges)
 
-# print alpha_found_edges
-# print alpha_edges
+        # print alpha_found_edges
+        # print alpha_edges
 
-missing_edges = list(set(alpha_edges) - set(alpha_found_edges))
-wrong_edges = find_wrongs(alpha_found_edges, alpha_edges)
-wrong_positions = [alpha_found_edges.index(w) for w in wrong_edges]
+        missing_edges = list(set(alpha_edges) - set(alpha_found_edges))
+        wrong_edges = find_wrongs(alpha_found_edges, alpha_edges)
+        wrong_positions = [alpha_found_edges.index(w) for w in wrong_edges]
 
-# print 'missing_edges'
-# print missing_edges
-# print 'wrong_edges'
-# print wrong_edges
+        # print 'missing_edges'
+        # print missing_edges
+        # print 'wrong_edges'
+        # print wrong_edges
 
-wrongs = len(wrong_positions)
-for i in range(0, wrongs): 
-        correct_edge(wrong_positions[i], 
-                found_edges[alpha_found_edges.index(wrong_edges[i])], 
-                edges[alpha_edges.index(missing_edges[i])])
+        wrongs = len(wrong_positions)
+        for i in range(0, wrongs): 
+                correct_edge(wrong_positions[i], 
+                        found_edges[alpha_found_edges.index(wrong_edges[i])], 
+                        edges[alpha_edges.index(missing_edges[i])])
 
-print seq
+        return seq
 
 
 
