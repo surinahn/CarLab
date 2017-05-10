@@ -6,11 +6,6 @@ from read_cube import *
 import time
 import subprocess
 
-sqr_dict = {'U1',}
-
-corners_colors = ['ULB']
-corners_indices = 
-
 
 # Rotate side by 180 degrees to fit kociemba format (for yellow side only)
 def rot180(seq):
