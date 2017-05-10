@@ -121,9 +121,13 @@ print("Input Configuration: ")
 print(seq)
 print('\n')
 
+clean_seq = bookkeep(seq)
+print(clean_seq)
+print('\n')
+
 # Pass the cube configuration into the kociemba solver
 #solution = kociemba.solve(config)
-solution = kociemba.solve(seq) 
+solution = kociemba.solve(clean_seq) 
 print("Solution: ")
 print(solution)
 print('\n')
@@ -142,7 +146,7 @@ print("Solving the cube...")
 moves = solution.split()
 
 
-'''
+
 for m in moves:
     print(m)
     if m == 'F':
@@ -181,5 +185,5 @@ for m in moves:
         turnD(1)
     elif m == "D2":
         turnD(2)
-'''
+
 
