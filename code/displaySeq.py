@@ -1,4 +1,4 @@
-import kociemba
+#import kociemba
 
 cMap = {'U':'Y', 'R':'B', 'L':'G', 'F':'O', 'D':'W', 'B':'P'}
 cMapInv = {'Y':'U', 'B':'R', 'G':'L', 'O':'F', 'W':'D', 'P':'B'}
@@ -32,6 +32,9 @@ def displayCube(seq):
     print '\n'
 
 
+# Test
+
+'''
 seq = 'DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD'
 
 displayCube(seq)
@@ -64,3 +67,4 @@ for c in userConfig:
 displayCube(editSeq)
 
 print 'Solution: ', kociemba.solve(editSeq)
+'''

@@ -261,7 +261,7 @@ def bookkeep(s):
                         solution = kociemba.solve(sq)
                         print "fixed this many wrong corners:"
                         print len(wrong_corners)
-                        return solution
+                        return sq
                         break
                 except ValueError: 
                         
@@ -275,6 +275,7 @@ def bookkeep(s):
 
 
         print "end simple perms"
+        return -1 
 # print seq
 
 

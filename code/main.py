@@ -3,6 +3,7 @@
 import kociemba
 from controls import *
 from read_cube import *
+from displaySeq import *
 import time
 import subprocess
 
@@ -51,8 +52,8 @@ close()
 
 seq = ''
 
+rotate0()
 print('Inspecting yellow...')
-openrl()
 
 side = rot180(read())
 side_ = side[0:4]
@@ -79,7 +80,7 @@ side_ += side[5:]
 seq += side_
 print(side_)
 
-rotate3()
+rotate1()
 print('Inspecting white...')
 side = permute(read())
 side_ = side[0:4]
@@ -97,7 +98,7 @@ side_ += side[5:]
 seq += side_
 print(side_)
 
-rotate3()
+rotate1()
 print('Inspecting pink...')
 side = read()
 side_ = side[0:4]
@@ -107,7 +108,7 @@ seq += side_
 print(side_)
 
 # Return to original orientation
-rotate4()
+rotate2()
 print('Done Inspecting!\n')
 
 ############################
@@ -117,7 +118,6 @@ print('Done Inspecting!\n')
 # Convert the cube configuration into kociemba format
 #config = 'DRLUUBFBRBLURRLRUBLRDDFDLFUFUFFDBRDUBRUFLLFDDBFLUBLRBD'
 print("Input Configuration: ")
-#print(config)
 print(seq)
 print('\n')
 
@@ -125,21 +125,71 @@ clean_seq = bookkeep(seq)
 print(clean_seq)
 print('\n')
 
+if clean_seq == -1:
+    # Initialize the claws
+    initialize()
+    
+    # Display cube and have user edit the configuration
+    clean_seq = ''
+    colorSeq = ''
+    displayCube(seq)
+    for c in seq:
+        colorSeq += cMap[c]
+    print 'Current yellow side: ', colorSeq[0:9]
+    print 'Current blue side: ', colorSeq[9:18]
+    print 'Current orange side: ', colorSeq[18:27]
+    print 'Current white side: ', colorSeq[27:36]
+    print 'Current green side: ', colorSeq[36:45]
+    print 'Current pink side: ', colorSeq[45:]
+    print '\n'
+    userConfig = ''
+    userInput = raw_input("Enter edited yellow side: ")
+    if userInput.lower() == 'good':
+        userConfig += colorSeq[0:9]
+    else:
+        userConfig += userInput
+    userInput = raw_input("Enter edited blue side: ")
+    if userInput.lower() == 'good':
+        userConfig += colorSeq[9:18]
+    else:
+        userConfig += userInput
+    userInput = raw_input("Enter edited orange side: ")
+    if userInput.lower() == 'good':
+        userConfig += colorSeq[18:27]
+    else:
+        userConfig += userInput
+    userInput = raw_input("Enter edited white side: ")
+    if userInput.lower() == 'good':
+        userConfig += colorSeq[27:36]
+    else:
+        userConfig += userInput
+    userInput = raw_input("Enter edited green side: ")
+    if userInput.lower() == 'good':
+        userConfig += colorSeq[36:45]
+    else:
+        userConfig += userInput
+    userInput = raw_input("Enter edited pink side: ")
+    if userInput.lower() == 'good':
+        userConfig += colorSeq[45:54]
+    else:
+        userConfig += userInput
+    print '\n'
+
+    for c in userConfig:
+        clean_seq += cMapInv[c]
+    displayCube(clean_seq)
+    # Close claws
+    userInput = ''
+    while userInput != 'c':
+        userInput = raw_input("Press c when ready to grip: ")
+    close()
+
 # Pass the cube configuration into the kociemba solver
 #solution = kociemba.solve(config)
 solution = kociemba.solve(clean_seq) 
 print("Solution: ")
 print(solution)
 print('\n')
-
-# Initialize the claws
-initialize()
-
-# Close claws
-userInput = ''
-while userInput != 'c':
-    userInput = raw_input("Press c when ready to grip: ")
-close()
 
 # Solve the cube
 print("Solving the cube...")

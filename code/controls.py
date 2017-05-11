@@ -44,7 +44,7 @@ bGrip = 480
 
 fdefault = 370
 fCW = 125
-fCCW = 630
+fCCW = 635
 rdefault = 390
 rCW = 125
 rCCW = 640
@@ -804,103 +804,66 @@ def turnD(x):
         R_Grip()
         L_Grip()
         sleep(0.75)
-        
+
+def rotate0():
+    # Ungrip R and L and turn them to grip hoizontally
+    R_Ungrip()
+    L_Ungrip()
+    sleep(.75)
+    R_n_CW()
+    L_n_CCW()
+    sleep(.75)
+    R_Grip()
+    L_Grip()
+
+    #move F and B out of the way 
+    sleep(.75)
+    F_Open()
+    B_Open()
+    sleep(.5)
 
 def rotate1():
-    # Rotate front and back claws 
-    pwm.setPWM(frChan, 0, fnCCW)
-    pwm.setPWM(brChan, 0, bnCW)
-    time.sleep(1)
+    #Grip vertically with F and B
+    B_Grip()
+    sleep(.5)
+    F_Grip()
+    sleep(.75)
 
-    pwm.setPWM(rrChan, 0, rCW)
-    pwm.setPWM(lrChan, 0, lCCW)
-    time.sleep(1)
+    #get R and L out of the way 
+    R_Ungrip()
+    L_Ungrip()
+    sleep(.75)
+    R_Default()
+    L_Default()
+    sleep(.75) 
+    
+    # Rotate entire cube with F and B 
+    F_n_CCW()
+    B_n_CW()
+    sleep(.75)
 
-    # Grip right and left claws 
-    pwm.setPWM(rgChan, 0, rGrip)
-    pwm.setPWM(lgChan, 0, lGrip)
-    time.sleep(1)
+    R_Open()
+    L_Open() 
 
-    # Ungrip front and back claws 
-    pwm.setPWM(fgChan, 0, servoMin)
-    pwm.setPWM(bgChan, 0, servoMin)
-    time.sleep(1)
-
-    openbf()
 
 
 def rotate2():
-    pwm.setPWM(fgChan, 0, fGrip)
-    pwm.setPWM(bgChan, 0, bGrip)
-    time.sleep(1)
+    #Grip Vertically with R and L
+    R_Grip()
+    sleep(.5)
+    L_Grip()
+    sleep(.75)
 
-    pwm.setPWM(rgChan, 0, rUngrip)
-    pwm.setPWM(lgChan, 0, lUngrip)
+    #Ungrip B and F and get them out of the way
+    F_Ungrip()
+    B_Ungrip()
+    sleep(.75)
+    F_Default()
+    B_Default()
+    sleep(.75)
 
-    pwm.setPWM(rrChan, 0, rdefault)
-    pwm.setPWM(lrChan, 0, ldefault)
-    time.sleep(1)
+    #Rotate cube with R and L
+    R_n_CW()
+    L_n_CCW()
+    sleep(.75)
 
-    pwm.setPWM(rgChan, 0, rGrip)
-    pwm.setPWM(lgChan, 0, lGrip)
-    time.sleep(1)
-
-    # Rotate front and back claws
-    openbf()
-    pwm.setPWM(frChan, 0, fCW+10)
-    pwm.setPWM(brChan, 0, bCCW-10)
-    time.sleep(1)
-    pwm.setPWM(rrChan, 0, rnCW)
-    pwm.setPWM(lrChan, 0, lnCCW)
-    time.sleep(1)
-
-def rotate3():
-    pwm.setPWM(fgChan, 0, fGrip)
-    pwm.setPWM(bgChan, 0, bGrip)
-    time.sleep(1)
-
-    openrl()
-    pwm.setPWM(rrChan, 0, rdefault)
-    pwm.setPWM(lrChan, 0, ldefault)
-    time.sleep(1)
-
-    pwm.setPWM(frChan, 0, fdefault)
-    pwm.setPWM(brChan, 0, bdefault)
-    time.sleep(1)
-
-def rotate4():
-    pwm.setPWM(rgChan, 0, rGrip)
-    pwm.setPWM(lgChan, 0, lGrip)
-    time.sleep(1)
-
-    openbf()
-    time.sleep(1)
-    pwm.setPWM(frChan, 0, fCW)
-    pwm.setPWM(brChan, 0, bCCW)
-    time.sleep(1)
-
-    pwm.setPWM(rrChan, 0, rnCW)
-    pwm.setPWM(lrChan, 0, lnCCW)
-    time.sleep(1)
-
-    pwm.setPWM(fgChan, 0, fGrip)
-    pwm.setPWM(bgChan, 0, bGrip)
-    time.sleep(1)
-
-    openrl()
-    pwm.setPWM(rrChan, 0, rdefault)
-    pwm.setPWM(lrChan, 0, ldefault)
-    time.sleep(1)
-
-    pwm.setPWM(rgChan, 0, rGrip)
-    pwm.setPWM(lgChan, 0, lGrip)
-    time.sleep(1)
-
-    openbf()
-    pwm.setPWM(frChan, 0, fdefault)
-    pwm.setPWM(brChan, 0, bdefault)
-    time.sleep(1)
-
-    pwm.setPWM(fgChan, 0, fGrip)
-    pwm.setPWM(bgChan, 0, bGrip)
-    time.sleep(1)

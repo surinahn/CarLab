@@ -13,12 +13,17 @@ while userInput != 'c':
 '''
 close()
 
+##print "0"
+##rotate0()
+##sleep(2)
+##print "1" 
+##rotate1()
+##sleep(2)
+##print "2" 
+##rotate2()
+##sleep(2)
+##print "1" 
+##rotate1()
+##sleep(2)
 
-turnR(0)
-turnL(0)
-turnU(2)
-turnB(1)
-turnB(0)
-turnU(2)
-turnL(1)
-turnR(1)
+turnF(2)
