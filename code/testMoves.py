@@ -13,12 +13,14 @@ while userInput != 'c':
 
 close()
 
+turnR(0)
 #turnU(0)
 #turnD(1)
 #turnU(2)
 #turnL(1)
 #turnR(1)
 
+'''
 pwm.setPWM(fgChan, 0, fUngrip)
 pwm.setPWM(bgChan, 0, bUngrip)
 time.sleep(0.75)
@@ -41,5 +43,5 @@ pwm.setPWM(lgChan, 0, lGrip)
 #pwm.setPWM(rgChan, 0, rGrip)
 time.sleep(0.75)
 pwm.setPWM(brChan, 0, bdefault)
-
+'''
 

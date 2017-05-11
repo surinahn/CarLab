@@ -214,7 +214,7 @@ def problem_areas(s):
         whites = s.count('D')
         seq = ''
 
-def generate_seq_corner(missing_corners, wrong_corners, sq): 
+def generate_seq_corner(missing_corners, wrong_corners, found_corners, sq): 
         wrong_positions_c = [found_corners.index(w) for w in wrong_corners]
         seq = sq 
 
@@ -257,9 +257,11 @@ def bookkeep(s):
 
         while simple_perms:
                 try: 
-                        sq = generate_seq_corner(missing_perms[m_count], wrong_perms[w_count], seq)
-                        solution = kociemba.solve(sq) 
-                        print solution
+                        sq = generate_seq_corner(missing_perms[m_count], wrong_perms[w_count], found_corners, seq)
+                        solution = kociemba.solve(sq)
+                        print "fixed this many wrong corners:"
+                        print len(wrong_corners)
+                        return solution
                         break
                 except ValueError: 
                         
