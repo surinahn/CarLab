@@ -31,21 +31,21 @@ brChan = 7
 # b claw is black
 
 fUngrip = 320
-fGrip = 420
+fGrip = 440
 rUngrip = 320
-rGrip = 410
+rGrip = 425
 lUngrip = 400
-lGrip = 480
+lGrip = 500
 bUngrip = 320
-bGrip = 475
+bGrip = 490
 
 # PWM values for turning each side
 # CW = clockwise, CCW = counter-clockwise, 2 = 180 degrees (turn twice)
 
-fdefault = 380
+fdefault = 370
 fCW = 125
 fCCW = 630
-rdefault = 370
+rdefault = 390
 rCW = 125
 rCCW = 640
 #rCCW = 632
@@ -62,8 +62,8 @@ bCCW = 630
 fnCCW = fCCW - 16
 bnCW = bCW + 21
 
-fnCW = fCW + 30 
-bnCCW = bCCW - 30
+fnCW = fCW + 30 - 15
+bnCCW = bCCW - 30 + 10
 
 lnCW = lCW + 20
 rnCCW = rCCW - 20
@@ -71,6 +71,122 @@ rnCCW = rCCW - 20
 lnCCW = lCCW - 20
 rnCW = rCW + 20 
 
+#DEFAULTS
+def fdefault():
+    pwm.setPWM(frChan, 0, fdefault)
+
+def bdefault():
+    pwm.setPWM(brChan, 0, bdefault)
+
+def ldefault():
+    pwm.setPWM(lrChan, 0, ldefault)
+
+def rdefault():
+    pwm.setPWM(rrChan, 0, rdefault)
+
+#CLOCKWISE WITH FRICTION 
+def fCW():
+    pwm.setPWM(frChan, 0, fCW)
+
+def bCW():
+    pwm.setPWM(brChan, 0, bCW)
+
+def lCW():
+    pwm.setPWM(lrChan, 0, lCW)
+
+def rCW():
+    pwm.setPWM(rrChan, 0, rCW)
+
+#COUNTERCLOCKWISE WITH FRICTION
+def fCCW():
+    pwm.setPWM(frChan, 0, fCCW)
+
+def bCCW():
+    pwm.setPWM(brChan, 0, bCCW)
+
+def lCCW():
+    pwm.setPWM(lrChan, 0, lCCW)
+
+def rCCW():
+    pwm.setPWM(rrChan, 0, rCCW)
+    
+#CLOCKWISE NO FRICTION
+def fnCW():
+    pwm.setPWM(frChan, 0, fnCW)
+
+def bnCW():
+    pwm.setPWM(brChan, 0, bnCW)
+
+def lnCW():
+    pwm.setPWM(lrChan, 0, lnCW)
+
+def rnCW():
+    pwm.setPWM(rrChan, 0, rnCW)
+
+#COUNTERCLOCKWISE NO FRICTION
+def fnCCW():
+    pwm.setPWM(frChan, 0, fnCCW)
+
+def bnCCW():
+    pwm.setPWM(brChan, 0, bnCCW)
+
+def lnCCW():
+    pwm.setPWM(lrChan, 0, lnCCW)
+
+def rnCCW():
+    pwm.setPWM(rrChan, 0, rnCCW)
+
+#GRIP
+def fGrip():
+    pwm.setPWM(fgChan, 0, fGrip)
+
+def bGrip():
+    pwm.setPWM(bgChan, 0, bGrip)
+
+def lGrip():
+    pwm.setPWM(lgChan, 0, lGrip)
+
+def rGrip():
+    pwm.setPWM(rgChan, 0, rGrip)
+
+#UNGRIP
+def fUnGrip():
+    pwm.setPWM(fgChan, 0, fUngrip)
+
+def bUnGrip():
+    pwm.setPWM(bgChan, 0, bUngrip)
+
+def lUnGrip():
+    pwm.setPWM(lgChan, 0, lUngrip)
+
+def rUnGrip():
+    pwm.setPWM(rgChan, 0, rUngrip)
+
+#OPEN ALL THE WAY
+def fOpen():
+    pwm.setPWM(fgChan, 0, servoMin)
+
+def bOpen():
+    pwm.setPWM(bgChan, 0, servoMin)
+
+def lOpen():
+    pwm.setPWM(lgChan, 0, servoMin)
+
+def rOpen():
+    pwm.setPWM(rgChan, 0, servoMin)
+
+#CLOSE ALL THE WAY
+def fClose():
+    pwm.setPWM(fgChan, 0, fGrip+20)
+
+def bClose():
+    pwm.setPWM(bgChan, 0, fGrip+20)
+
+def lClose():
+    pwm.setPWM(lgChan, 0, fGrip+20)
+
+def rClose():
+    pwm.setPWM(rgChan, 0, fGrip+20)
 
 # Initialize PWM
 # Make sure all claws are gripped and properly rotated
@@ -84,10 +200,10 @@ def initialize():
     pwm.setPWM(lgChan, 0, servoMin)
     pwm.setPWM(bgChan, 0, servoMin)
     time.sleep(2)
-    pwm.setPWM(fgChan, 0, fGrip+30)
-    pwm.setPWM(rgChan, 0, rGrip+30)
-    pwm.setPWM(lgChan, 0, lGrip+30)
-    pwm.setPWM(bgChan, 0, bGrip+20)
+    pwm.setPWM(fgChan, 0, fGrip+20)
+    pwm.setPWM(rgChan, 0, rGrip+20)
+    pwm.setPWM(lgChan, 0, lGrip+20)
+    pwm.setPWM(bgChan, 0, bGrip+10)
     time.sleep(1)
     pwm.setPWM(frChan, 0, fdefault)
     pwm.setPWM(brChan, 0, bdefault)
@@ -95,10 +211,10 @@ def initialize():
     pwm.setPWM(rrChan, 0, rdefault)
     pwm.setPWM(lrChan, 0, ldefault)
     time.sleep(1)
-    pwm.setPWM(fgChan, 0, fGrip-40)
-    pwm.setPWM(rgChan, 0, rGrip-40)
-    pwm.setPWM(lgChan, 0, lGrip-40)
-    pwm.setPWM(bgChan, 0, bGrip-40)
+    pwm.setPWM(fgChan, 0, fGrip-80)
+    pwm.setPWM(rgChan, 0, rGrip-80)
+    pwm.setPWM(lgChan, 0, lGrip-80)
+    pwm.setPWM(bgChan, 0, bGrip-80)
     time.sleep(1)
 
 def close():
