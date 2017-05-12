@@ -852,8 +852,8 @@ def rotate1():
     
     # Rotate entire cube with F and B 
     #F_n_CCW()
-    pwm.setPWM(frChan, 0, fnCCW+10)
-    pwm.setPWM(brChan, 0, fnCW-15)
+    pwm.setPWM(frChan, 0, fnCCW+15)
+    pwm.setPWM(brChan, 0, fnCW-25)
     #B_n_CW()
     sleep(.75)
 
