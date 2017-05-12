@@ -7,7 +7,7 @@ base_x = 120
 base_y = 50
 
 side = 60
-offset = 60
+offset = 50
 
 data = open(sys.argv[1], "r")
 
@@ -30,8 +30,8 @@ def contains(sig, mid_x, mid_y, x, y):
 	return (offset_x < offset and offset_y < offset)
 
 cutoff = 100
-cutoff_x = 60
-cutoff_y = 50
+cutoff_x = 70
+cutoff_y = 70
 x_over = 0 
 x_under = 0 
 y_over = 0
@@ -64,7 +64,7 @@ for i in range(0,300):
 # print y_under
 # print y_over
 
-if x_under < 50: 
+if x_under < 100: 
 	cutoff_x = 100
 if y_under < 100: 
 	cutoff_y = 100

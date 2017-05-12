@@ -3,14 +3,14 @@ import time
 
 
 # Initialize the claws
-'''
+
 initialize()
 
 # Close claws
 userInput = ''
 while userInput != 'c':
     userInput = raw_input("Press c when ready to grip: ")
-'''
+
 close()
 
 ##print "0"
@@ -27,3 +27,8 @@ close()
 ##sleep(2)
 
 turnF(2)
+turnR(2)
+turnB(2)
+turnL(2)
+turnU(2)
+turnD(2)
