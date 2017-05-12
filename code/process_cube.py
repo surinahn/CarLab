@@ -41,20 +41,21 @@ for i in range(0,300):
 	line = data.readline()
 	split = line.split()
 	split = [int(s) for s in split]
-	sig = split[0]
-	x = split[1]
-	y = split[2]
-	w = split[3]
-	h = split[4]
-	if w*h>1000:
-		if x < cutoff:
-			x_over += 1
-			if x < cutoff_x: 
-				x_under += 1
-		if y < cutoff:
-			y_over += 1
-			if y < cutoff_y: 
-				y_under += 1
+	if len(split) > 4:
+		sig = split[0]
+		x = split[1]
+		y = split[2]
+		w = split[3]
+		h = split[4]
+		if w*h>1000:
+			if x < cutoff:
+				x_over += 1
+				if x < cutoff_x: 
+					x_under += 1
+			if y < cutoff:
+				y_over += 1
+				if y < cutoff_y: 
+					y_under += 1
 
 # print "x under/over"
 # print x_under
