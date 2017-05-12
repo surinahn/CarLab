@@ -59,8 +59,8 @@ bCW = 112
 #bCCW = 640
 bCCW = 622
 
-fnCCW = fCCW - 16
-bnCW = bCW + 21
+fnCCW = fCCW - 10
+bnCW = bCW + 15
 
 fnCW = fCW + 30 - 15
 bnCCW = bCCW - 30 + 10
