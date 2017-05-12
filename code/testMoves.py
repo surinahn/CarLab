@@ -51,6 +51,7 @@ close()
 # rotate1()
 # sleep(2)
 
+turnR(0)
 turnF(2)
 turnR(2)
 turnB(2)

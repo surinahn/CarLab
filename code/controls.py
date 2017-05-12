@@ -339,7 +339,8 @@ def turnR(x):
         R_Ungrip() 
         sleep(0.75)
         # Turn claw
-        R_n_CCW() 
+        #R_n_CCW()
+        pwm.setPWM(rrChan, 0, rnCCW+10) 
         sleep(0.75)
         # Grip claw
         R_Grip() 
@@ -454,7 +455,7 @@ def turnB(x):
         # Turn claw
         #B_CW()
         B_Default()
-        sleep(0.75)
+        sleep(0.5)
         B_CW()
         sleep(0.75)
         # Ungrip claw
