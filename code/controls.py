@@ -847,8 +847,8 @@ def rotate1():
     sleep(.75) 
     
     # Rotate entire cube with F and B 
-    F_n_CCW()
-    B_n_CW()
+    F_n_CW()
+    B_n_CCW()
     sleep(.75)
 
     R_Open()

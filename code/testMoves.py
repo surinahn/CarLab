@@ -13,43 +13,43 @@ while userInput != 'c':
 
 close()
 
-R_Ungrip() 
-L_Ungrip()
-sleep(.75)
+# R_Ungrip() 
+# L_Ungrip()
+# sleep(.75)
 
-    # Rotate entire cube with F and B 
-while True: 
-	F_n_CCW()
-	B_n_CW()
-	sleep(3)
-	F_n_CW()
-	B_n_CCW()
-	sleep(3)
+#     # Rotate entire cube with F and B 
+# while True: 
+# 	F_n_CCW()
+# 	B_n_CW()
+# 	sleep(3)
+# 	F_n_CW()
+# 	B_n_CCW()
+# 	sleep(3)
 
-# print "0"
-# rotate0()
-# sleep(2)
-# print "1" 
-# rotate1()
-# sleep(2)
-# print "2" 
-# rotate2()
-# sleep(2)
-# print "1" 
-# rotate1()
-# sleep(2)
-# print "2" 
-# rotate2()
-# sleep(2)
-# print "1" 
-# rotate1()
-# sleep(2)
-# print "2" 
-# rotate2()
-# sleep(2)
-# print "1" 
-# rotate1()
-# sleep(2)
+print "0"
+rotate0()
+sleep(2)
+print "1" 
+rotate1()
+sleep(2)
+print "2" 
+rotate2()
+sleep(2)
+print "1" 
+rotate1()
+sleep(2)
+print "2" 
+rotate2()
+sleep(2)
+print "1" 
+rotate1()
+sleep(2)
+print "2" 
+rotate2()
+sleep(2)
+print "1" 
+rotate1()
+sleep(2)
 
 # turnF(2)
 # turnR(2)
