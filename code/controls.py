@@ -59,8 +59,8 @@ bCW = 112
 #bCCW = 640
 bCCW = 622
 
-fnCCW = fCCW - 10
-bnCW = bCW + 15
+fnCCW = fCCW
+bnCW = bCW + 5
 
 fnCW = fCW + 30 - 15
 bnCCW = bCCW - 30 + 10
@@ -858,9 +858,9 @@ def rotate1():
 
 def rotate2():
     #Grip Vertically with R and L
-    L_Grip()
-    sleep(.5)
     R_Grip()
+    sleep(.5)
+    L_Grip()
     sleep(.75)
 
     #Ungrip B and F and get them out of the way
