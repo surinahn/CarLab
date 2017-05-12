@@ -851,20 +851,20 @@ def rotate1():
     sleep(.75) 
     
     # Rotate entire cube with F and B 
-    #F_n_CCW()
-    pwm.setPWM(frChan, 0, fnCCW+10)
-    pwm.setPWM(brChan, 0, fnCW-10)
-    #B_n_CW()
+    F_n_CCW()
+    #pwm.setPWM(frChan, 0, fnCCW+10)
+    #pwm.setPWM(brChan, 0, fnCW-10)
+    B_n_CW()
     sleep(.75)
 
-    L_Grip()
-    sleep(.5)
+    #L_Grip()
+    #sleep(.5)
     R_Super_Grip() 
     sleep(.5)
     R_Grip() 
     sleep(.5)
-    #L_Grip() 
-    #sleep(.75)
+    L_Grip() 
+    sleep(.75)
 
     R_Open()
     L_Open() 
@@ -873,14 +873,14 @@ def rotate1():
 
 def rotate2():
     #Grip Vertically with R and L
-    L_Grip()
-    sleep(.5)
+    #L_Grip()
+    #sleep(.5)
     R_Super_Grip() 
     sleep(.5)
     R_Grip() 
     sleep(.5)
-    #L_Grip() 
-    #sleep(.5)
+    L_Grip() 
+    sleep(.5)
 
 
     #Ungrip B and F and get them out of the way
