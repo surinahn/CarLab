@@ -884,18 +884,6 @@ def rotate2():
     R_Grip() 
     sleep(.5)
 
-    L_Grip()
-    sleep(0.5)
-
-    R_Ungrip()
-    sleep(.5)
-    R_Grip()
-    sleep(.5)
-    R_Super_Grip() 
-    sleep(.5)
-    R_Grip() 
-    sleep(.5)
-
     L_Grip() 
     sleep(.5)
 
