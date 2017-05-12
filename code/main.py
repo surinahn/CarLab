@@ -37,6 +37,7 @@ userInput = ''
 while userInput != 'c':
     userInput = raw_input("Press c when ready to grip: ")
 close()
+print '\n'
 
 
 ############################
@@ -51,6 +52,10 @@ close()
 # Front = Orange, Right = Blue, Left = Green, Up = Yellow, Down = White, Back = Pink
 
 seq = ''
+
+print "INSPECTION PHASE"
+print "-----------------"
+print '\n'
 
 rotate0()
 print('Inspecting yellow...')
@@ -183,6 +188,7 @@ if clean_seq == -1:
     while userInput != 'c':
         userInput = raw_input("Press c when ready to grip: ")
     close()
+    print '\n'
 
 # Pass the cube configuration into the kociemba solver
 #solution = kociemba.solve(config)
@@ -192,7 +198,9 @@ print(solution)
 print('\n')
 
 # Solve the cube
-print("Solving the cube...")
+print "SOLVING PHASE"
+print "-----------------"
+print '\n'
 moves = solution.split()
 
 
@@ -237,3 +245,4 @@ for m in moves:
         turnD(2)
 
 
+print "DONE! Thanks for feeding me :) "

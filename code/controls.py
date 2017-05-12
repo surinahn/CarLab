@@ -204,6 +204,9 @@ def initialize():
     pwm = PWM(0x40)
     pwm.setPWMFreq(60) # Set frequency to 60 Hz
 
+    print "Hello, I'm Ruby the Rubik's Cube Robot!"
+    print '\n'
+
     F_Open()
     B_Open()
     L_Open()
