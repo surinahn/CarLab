@@ -291,6 +291,8 @@ def turnF(x):
         F_Grip() 
         sleep(0.75)
         # Turn claw
+        F_Default()
+        sleep(0.5)
         F_CW() 
         sleep(0.75)
         # Ungrip claw
@@ -343,6 +345,8 @@ def turnR(x):
         R_Grip() 
         sleep(0.75)
         # Turn claw
+        R_Default()
+        sleep(0.5)
         R_CW() 
         sleep(0.75)
         # Ungrip claw
@@ -395,6 +399,8 @@ def turnL(x):
         L_Grip() 
         sleep(0.75)
         # Turn claw
+        L_Default()
+        sleep(0.5)
         L_CW() 
         sleep(0.75)
         # Ungrip claw

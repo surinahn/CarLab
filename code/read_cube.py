@@ -268,6 +268,9 @@ def bookkeep(s):
         w_e_count = 0 
         simple_perms = True 
 
+        if len(wrong_corners) + len(wrong_edges) > 7:
+                return -1 
+                
         while simple_perms:
                 try: 
                         sq = generate_seq_corner(missing_perms_c[m_c_count], wrong_perms_c[w_c_count], found_corners, seq)
