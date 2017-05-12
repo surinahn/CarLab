@@ -123,7 +123,7 @@ max_indices = [letters[b.index(max(b))] for b in blocks]
 ##process for white
 for i in range(0,9): 
 	if max(blocks[i]) < 5: 
-		max_indices[i] = letters[4]
+		max_indices[i] = letters[2]
 string = ''.join(max_indices)
 print string
 
