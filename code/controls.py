@@ -859,12 +859,12 @@ def rotate1():
 
     #L_Grip()
     #sleep(.5)
-    R_Super_Grip() 
-    sleep(.5)
-    R_Grip() 
-    sleep(.5)
-    L_Grip() 
-    sleep(.75)
+    #R_Super_Grip() 
+    #sleep(.5)
+    #R_Grip() 
+    #sleep(.5)
+    #L_Grip() 
+    #sleep(.75)
 
     R_Open()
     L_Open() 
