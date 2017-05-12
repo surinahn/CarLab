@@ -875,6 +875,10 @@ def rotate2():
     #Grip Vertically with R and L
     #L_Grip()
     #sleep(.5)
+    R_Ungrip()
+    sleep(.5)
+    R_Grip()
+    sleep(.5)
     R_Super_Grip() 
     sleep(.5)
     R_Grip() 
