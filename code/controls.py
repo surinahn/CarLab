@@ -150,7 +150,7 @@ def R_Grip():
     pwm.setPWM(rgChan, 0, rGrip)
 
 def R_Super_Grip(): 
-    pwm.setPWM(rgChan, 0, rGrip+20)
+    pwm.setPWM(rgChan, 0, rGrip+30)
 
 #UNGRIP
 def F_Ungrip():
@@ -883,6 +883,15 @@ def rotate2():
     sleep(.5)
     R_Grip() 
     sleep(.5)
+    R_Ungrip()
+    sleep(.5)
+    R_Grip()
+    sleep(.5)
+    R_Super_Grip() 
+    sleep(.5)
+    R_Grip() 
+    sleep(.5)
+    
     L_Grip() 
     sleep(.5)
 
