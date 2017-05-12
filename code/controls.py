@@ -858,9 +858,9 @@ def rotate1():
 
 def rotate2():
     #Grip Vertically with R and L
-    R_Grip()
-    sleep(.5)
     L_Grip()
+    sleep(.5)
+    R_Grip()
     sleep(.75)
 
     #Ungrip B and F and get them out of the way
