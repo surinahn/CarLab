@@ -845,10 +845,22 @@ def rotate1():
     R_Default()
     L_Default()
     sleep(.75) 
+
+    #grip with R and L 
+    R_Grip()
+    L_Grip()
+    sleep(.75)
+    R_Ungrip()
+    L_Ungrip()
+    sleep(.75)
     
     # Rotate entire cube with F and B 
     F_n_CCW()
     B_n_CW()
+    sleep(.75)
+
+    R_Grip() 
+    L_Grip() 
     sleep(.75)
 
     R_Open()
@@ -887,4 +899,6 @@ def rotate2():
     R_n_CW()
     L_n_CCW()
     sleep(.75)
+
+
 
