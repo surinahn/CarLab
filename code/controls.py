@@ -851,9 +851,9 @@ def rotate1():
     B_n_CW()
     sleep(.75)
 
-    L_Grip() 
-    sleep(.5)
     R_Grip() 
+    sleep(.5)
+    L_Grip() 
     sleep(.75)
 
     R_Open()
@@ -863,22 +863,11 @@ def rotate1():
 
 def rotate2():
     #Grip Vertically with R and L
-    pwm.setPWM(rgChan, 0, rGrip-70)
-    sleep(.75)
-    pwm.setPWM(frChan, 0, fnCCW+30)
-    pwm.setPWM(brChan, 0, bnCW+30)
-    sleep(.5)
-    pwm.setPWM(frChan, 0, fnCCW-30)
-    pwm.setPWM(brChan, 0, bnCW-30)
-    sleep(.5)
-    F_n_CCW()
-    B_n_CW()
+    L_Grip() 
     sleep(.5)
     R_Grip() 
-
     sleep(.5)
-    L_Grip()
-    sleep(.75)
+    
 
     #Ungrip B and F and get them out of the way
     F_Ungrip()
