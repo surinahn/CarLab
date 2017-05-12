@@ -281,11 +281,13 @@ def bookkeep(s):
         # print missing_perms_c
         # print wrong_perms_c
 
-        if total_wrongs > 7:
+        if total_wrongs > 5:
                 return -1 
                 
         while simple_perms:
                 try: 
+                        # current = '(' + str(w_e_count) + ',' + str(m_e_count) + ',' + str(w_c_count) + ',' + str(w_c_count) + ')'
+                        # print current 
                         sq = generate_seq_corner(missing_perms_c[m_c_count], wrong_perms_c[w_c_count], found_corners, seq)
                         sq = generate_seq_edge(missing_perms_e[m_e_count], wrong_perms_e[w_e_count], found_edges, sq)
                         solution = kociemba.solve(sq)
@@ -309,12 +311,10 @@ def bookkeep(s):
                                 m_c_count += 1
                         if m_c_count >= len(missing_perms_c):
                                 simple_perms = False   
-                        #current = '(' + str(w_e_count) + ',' + str(m_e_count) + ',' + str(w_c_count) + ',' + str(w_e_count) + ')'
-                        #print current 
                  
 
 
         print "Unable to correct misreads :("
         return -1 
 
-#bookkeep(seq)
+bookkeep(seq)
