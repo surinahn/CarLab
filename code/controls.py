@@ -858,7 +858,7 @@ def rotate1():
 
 def rotate2():
     #Grip Vertically with R and L
-    pwm.setPWM(rgChan, 0, rGrip-50)
+    pwm.setPWM(rgChan, 0, rGrip-30)
     sleep(.75)
     pwm.setPWM(frChan, 0, fnCCW+20)
     pwm.setPWM(brChan, 0, bnCW+20)
