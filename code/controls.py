@@ -883,6 +883,10 @@ def rotate2():
     sleep(.5)
     R_Grip() 
     sleep(.5)
+
+    L_Grip()
+    sleep(0.5)
+
     R_Ungrip()
     sleep(.5)
     R_Grip()
@@ -891,7 +895,7 @@ def rotate2():
     sleep(.5)
     R_Grip() 
     sleep(.5)
-    
+
     L_Grip() 
     sleep(.5)
 
