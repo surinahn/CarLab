@@ -302,7 +302,4 @@ def bookkeep(s):
         return -1 
 
 
-bookkeep(seq)
-
-
 
