@@ -190,6 +190,19 @@ if clean_seq == -1:
     close()
     print '\n'
 
+else:
+	print "Mic drop for reading it right!"
+
+	# Initialize the claws
+	initialize()
+
+	# Close claws
+	userInput = ''
+	while userInput != 'c':
+	    userInput = raw_input("Press c when ready to grip: ")
+	close()
+	print '\n'
+
 # Pass the cube configuration into the kociemba solver
 #solution = kociemba.solve(config)
 solution = kociemba.solve(clean_seq) 
