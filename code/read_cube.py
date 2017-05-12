@@ -53,7 +53,9 @@ letters = ['B','F','U','L','D','R']
 #seq = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBLB'
 
 #seq = 'UUUUUUUUURRDLRLDRDFFFDFBRLBDFDRDBRBFLLLRLFDFFBBBDBDLDB'
-seq = 'UDUUUUUUURRDLRLDRDFFFDFBRLBDFDRDBRBFLLLRLFDFFBBBDBDLDU'
+#seq = 'UDUUUUUUURRDLRLDRDFFFDFBRLBDFDRDBRBFLLLRLFDFFBBBDBDLDU'
+
+seq = 'DDBUUUUDLUFLLRDDFLRLFLFBLDRFBFFDLDRBRBFFLDBRDURUFBRDUR'
 
 
 def counts(ss): 
@@ -268,7 +270,18 @@ def bookkeep(s):
         w_e_count = 0 
         simple_perms = True 
 
-        if len(wrong_corners) + len(wrong_edges) > 7:
+        total_wrongs = len(wrong_corners) + len(wrong_edges)
+        print "misread this many corners"
+        print len(missing_perms_c)
+        print "misread this many edges"
+        print len(missing_perms_e)
+
+        # print missing_perms_e
+        # print wrong_perms_e
+        # print missing_perms_c
+        # print wrong_perms_c
+
+        if total_wrongs > 7:
                 return -1 
                 
         while simple_perms:
@@ -295,11 +308,13 @@ def bookkeep(s):
                                 w_c_count = 0
                                 m_c_count += 1
                         if m_c_count >= len(missing_perms_c):
-                                simple_perms = False                    
+                                simple_perms = False   
+                        #current = '(' + str(w_e_count) + ',' + str(m_e_count) + ',' + str(w_c_count) + ',' + str(w_e_count) + ')'
+                        #print current 
+                 
 
 
         print "Unable to correct misreads :("
         return -1 
 
-
-
+#bookkeep(seq)

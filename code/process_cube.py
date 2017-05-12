@@ -116,7 +116,7 @@ for line in data.readlines():
 				if contains(sig, mid_x, mid_y, x, y):
 					blocks[num][sig-1] += 1
 
-# print blocks
+print blocks
 max_indices = [letters[b.index(max(b))] for b in blocks]
 # print "max_indices"
 # print max_indices
